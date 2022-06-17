@@ -1,0 +1,5 @@
+# Connect VPN ZeroTier (Controler is on the Rainbow)
+# sudo zerotier-cli join <id_site>
+
+# Disconnect VPN ZeroTier (Controler is on the Rainbow)
+# sudo zerotier-cli leave <id_site>
