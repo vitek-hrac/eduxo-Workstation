@@ -258,7 +258,7 @@ rm $HOME/input.yaml
 # Create container
 NAME="server"
 echo -e '\e[1;92mDeploying container '$NAME' ...\e[0m\n'
-lxc launch ubuntu:lts $NAME
+lxc launch ubuntu:lts $NAME  > /dev/null
 
 # Add user to container
 lxc exec $NAME -- groupadd sysadmin
