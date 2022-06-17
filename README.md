@@ -1,6 +1,6 @@
 # eduxo Workstation
 
-**OS:** Ubuntu 22.04  
+**OS:** Ubuntu 20.04  
 **Login:** sysadmin:Netlab!23  
 **Hostname:** eduxo  
 **FQDN:** eduxo.lab
