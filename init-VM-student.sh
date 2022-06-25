@@ -39,7 +39,7 @@ ff02::2 ip6-allrouters" > /etc/hosts'
 
 
 # Install GIT
-sudo apt-get install -y git > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git > /dev/null
 
 # Add GIT repository to known_hosts
 # mkdir $HOME/.ssh
@@ -111,15 +111,14 @@ DEBIAN_FRONTEND=noninteractive git clone git@github.com:eduxo/eduxo.git > /dev/n
 # Install upgrades and basic programs
 echo -e '\n\e[1;92mInstalling basic programs, wait for completion.\e[0m'
 sleep 2
-sudo apt-get update -y > /dev/null
-sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y tigervnc-viewer asciinema > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -y > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tigervnc-viewer asciinema > /dev/null
 
 
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark > /dev/null
-unset DEBIAN_FRONTEND
 sudo adduser $USER wireshark > /dev/null
 
 
@@ -139,7 +138,6 @@ sleep 2
 sudo DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:gns3/ppa > /dev/null
 sudo DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
-unset DEBIAN_FRONTEND
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
 #/usr/bin/gns3server
@@ -197,8 +195,8 @@ sudo sh -c 'echo \
 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
      
 # Install Docker Engine
-sudo apt-get update > /dev/null
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive  apt-get update > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null
      
 # Add your user to the docker group
 sudo usermod -aG docker $USER > /dev/null
@@ -279,9 +277,9 @@ lxc start $NAME
 # Upgrade container
 echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
 sleep 2
-lxc exec $NAME -- apt-get update > /dev/null
-lxc exec $NAME -- apt-get upgrade -y > /dev/null
-lxc exec $NAME -- apt-get autoremove -y > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
 lxc list
@@ -291,8 +289,9 @@ sleep 2
 
 # clean & restart
 echo -e '\n\e[1;92mCleaning ...\e[0m'
-sudo apt-get autoremove -y > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
+unset DEBIAN_FRONTEND
 sleep 2
 echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
 sleep 3
