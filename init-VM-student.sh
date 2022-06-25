@@ -40,7 +40,7 @@ ff02::2 ip6-allrouters" > /etc/hosts'
 
 
 # Install GIT
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git > /dev/null
+sudo apt-get install -y git > /dev/null
 
 # Add GIT repository to known_hosts
 # mkdir $HOME/.ssh
@@ -111,10 +111,9 @@ git clone --quiet git@github.com:eduxo/eduxo.git
 
 # Install upgrades and basic programs
 echo -e '\n\e[1;92mInstalling basic programs, wait for completion.\e[0m'
-sleep 2
-sudo DEBIAN_FRONTEND=noninteractive apt-get update -y > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tigervnc-viewer asciinema > /dev/null
+sudo apt-get update -y > /dev/null
+sudo apt-get upgrade -y > /dev/null
+sudo apt-get install -y tigervnc-viewer asciinema > /dev/null
 
 
 # Install Wireshark
@@ -130,15 +129,13 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_811_U
 rm CiscoPacketTracer_811_Ubuntu_64bit.deb > /dev/null
 
 echo -e '\n\e[1;92mInstallation basic programs is completed.\e[0m\n'
-sleep 2
 
 
 # GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
 echo -e '\n\e[1;92mInstalling program GNS3, wait for completion.\e[0m'
-sleep 2
-sudo DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:gns3/ppa > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
+sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
+sudo apt-get update > /dev/null
+sudo apt-get install -y gns3-gui gns3-server > /dev/null
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
 #/usr/bin/gns3server
@@ -169,12 +166,10 @@ udp_end_port_range = 20000
 enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
 
 echo -e '\n\e[1;92mInstallation GNS3 is completed.\e[0m\n'
-sleep 2
 
 
 # Install Docker (https://docs.docker.com/engine/install/ubuntu/)
 echo -e '\n\e[1;92mInstalling Docker, wait for completion.\e[0m'
-sleep 2
 
 # Uninstall old versions
 # sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -196,8 +191,8 @@ sudo sh -c 'echo \
 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
      
 # Install Docker Engine
-sudo DEBIAN_FRONTEND=noninteractive  apt-get update > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null
+sudo apt-get update > /dev/null
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null
      
 # Add your user to the docker group
 sudo usermod -aG docker $USER > /dev/null
@@ -211,7 +206,6 @@ echo -e '\n\e[1;92mInstallation Docker is completed.\e[0m\n'
 
 # Install LXD
 echo -e '\n\e[1;92mInstalling LXD, wait for completion.\e[0m'
-sleep 2 
 sudo snap install lxd > /dev/null
 
 # Add your user to the lxd group
@@ -263,7 +257,6 @@ lxc launch ubuntu:lts $NAME  > /dev/null
 lxc exec $NAME -- groupadd sysadmin
 lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
-#lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | sudo chpasswd'
 
 # Enable SSH Password Authentication
 lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -277,7 +270,6 @@ lxc start $NAME
 
 # Upgrade container
 echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
-sleep 2
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
@@ -285,7 +277,6 @@ lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/nu
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
 lxc list
 echo -e '\n\e[1;92mInstallation LXD is completed.\e[0m\n'
-sleep 2
 
 
 # clean & restart
@@ -293,7 +284,6 @@ echo -e '\n\e[1;92mCleaning ...\e[0m'
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
 unset DEBIAN_FRONTEND
-sleep 2
 echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
 sleep 3
 sudo reboot
