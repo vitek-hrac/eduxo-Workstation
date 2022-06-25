@@ -281,7 +281,6 @@ echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
 sleep 2
 lxc exec $NAME -- apt-get update > /dev/null
 lxc exec $NAME -- apt-get upgrade -y > /dev/null
-sleep 2
 lxc exec $NAME -- apt-get autoremove -y > /dev/null
 
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
