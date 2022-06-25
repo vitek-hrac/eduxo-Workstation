@@ -8,3 +8,17 @@
 
 # Disconnect VPN ZeroTier (Controler is on the Rainbow)
 # sudo zerotier-cli leave <id_site>
+
+systemctl stop zerotier-one.service
+rm /var/lib/zerotier-one/identity.public
+rm /var/lib/zerotier-one/identity.secret
+systemctl start zerotier-one.service
+zerotier-cli join <id_site>
+
+sudo systemctl stop zerotier-one.service
+sudo rm -f /var/lib/zerotier-one/identity.public
+sudo rm -f /var/lib/zerotier-one/identity.secret
+sudo systemctl start zerotier-one.service
+sudo zerotier-cli join 123cd0042f647483
+sudo zerotier-cli status
+sudo zerotier-cli listnetworks
