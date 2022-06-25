@@ -288,7 +288,6 @@ echo -e '\e[1;92mInstallation LXD is completed.\e[0m\n'
 sleep 2
 
 
-
 # clean & restart
 echo -e '\n\e[1;92mCleaning ...\e[0m\n'
 sudo apt-get autoremove -y > /dev/null
