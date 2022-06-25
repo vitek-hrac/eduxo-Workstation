@@ -26,8 +26,11 @@ if ! dpkg --get-selections | grep -qw zerotier;then
     sudo zerotier-cli join 123cd0042f647483
     sudo zerotier-cli status
     sudo zerotier-cli listnetworks
+    sleep 3
     
     echo -e '\n\e[1;92mInstalace ZeroTier je kompletni, PC se restartuje!\e[0m\n'
-    sleep 2
+    sleep 3
     reboot
+else
+    echo -e '\n\e[1;92mZeroTier je jiz nainstalovan!\e[0m\n'
 fi
