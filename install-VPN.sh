@@ -14,9 +14,9 @@ function check_internet() {
 check_internet
 sleep 2
 
-# test, jestli je balicek lxd nainstalovany, pokud ne, nainstaluje se
+# test, jestli je ZeroTier nainstalovany, pokud ne, nainstaluje se
 if ! dpkg --get-selections | grep -qw zerotier;then
-    echo -e '\n\e[1;92mLXD neni nanistalovan. Instaluji LXD.\e[0m\n'
+    echo -e '\n\e[1;92mZeroTier neni nanistalovan. Instaluji ZeroTier.\e[0m\n'
     
     # update seznamu balicku
     sudo apt update
