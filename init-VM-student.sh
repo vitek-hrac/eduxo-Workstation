@@ -105,7 +105,7 @@ fZy3vWjYrVSzAAAADnN5c2FkbWluQGVkdXhvAQIDBA==
 chmod 600 $HOME/.ssh/id_rsa
 
 # GIT clone
-DEBIAN_FRONTEND=noninteractive git clone git@github.com:eduxo/eduxo.git > /dev/null
+git clone --quiet git@github.com:eduxo/eduxo.git
 
 
 # Install upgrades and basic programs
