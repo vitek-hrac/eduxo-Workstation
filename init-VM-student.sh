@@ -109,7 +109,7 @@ git clone git@github.com:eduxo/eduxo.git > /dev/null
 
 
 # Install upgrades and basic programs
-echo -e '\n\e[1;92mInstalling basic programs, wait for completion.\e[0m\n'
+echo -e '\n\e[1;92mInstalling basic programs, wait for completion.\e[0m'
 sleep 2
 sudo apt-get update -y > /dev/null
 sudo apt-get upgrade -y > /dev/null
@@ -129,12 +129,12 @@ echo "PacketTracer PacketTracer_810_amd64/accept-eula select true" | sudo debcon
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_811_Ubuntu_64bit.deb  > /dev/null
 rm CiscoPacketTracer_811_Ubuntu_64bit.deb > /dev/null
 
-echo -e '\e[1;92mInstallation basic programs is completed.\e[0m\n'
+echo -e '\n\e[1;92mInstallation basic programs is completed.\e[0m\n'
 sleep 2
 
 
 # GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
-echo -e '\n\e[1;92mInstalling program GNS3, wait for completion.\e[0m\n'
+echo -e '\n\e[1;92mInstalling program GNS3, wait for completion.\e[0m'
 sleep 2
 sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
 sudo apt-get update > /dev/null
@@ -169,12 +169,12 @@ udp_end_port_range = 20000
 [Qemu]
 enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
 
-echo -e '\e[1;92mInstallation GNS3 is completed.\e[0m\n'
+echo -e '\n\e[1;92mInstallation GNS3 is completed.\e[0m\n'
 sleep 2
 
 
 # Install Docker (https://docs.docker.com/engine/install/ubuntu/)
-echo -e '\n\e[1;92mInstalling Docker, wait for completion.\e[0m\n'
+echo -e '\n\e[1;92mInstalling Docker, wait for completion.\e[0m'
 sleep 2
 
 # Uninstall old versions
@@ -207,11 +207,11 @@ sudo usermod -aG docker $USER > /dev/null
 sudo docker pull portainer/portainer-ce:latest > /dev/null
 sudo docker run -d -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest > /dev/null
      
-echo -e '\e[1;92mInstallation Docker is completed.\e[0m\n'
+echo -e '\n\e[1;92mInstallation Docker is completed.\e[0m\n'
 
 
 # Install LXD
-echo -e '\n\e[1;92mInstalling LXD, wait for completion.\e[0m\n'
+echo -e '\n\e[1;92mInstalling LXD, wait for completion.\e[0m'
 sleep 2 
 sudo snap install lxd > /dev/null
 
@@ -257,7 +257,7 @@ rm $HOME/input.yaml
     
 # Create container
 NAME="server"
-echo -e '\e[1;92mDeploying container '$NAME' ...\e[0m\n'
+echo -e '\n\e[1;92mDeploying container '$NAME' ...\e[0m'
 lxc launch ubuntu:lts $NAME  > /dev/null
 
 # Add user to container
@@ -277,20 +277,21 @@ lxc config device set $NAME eth0 ipv4.address 10.20.30.40
 lxc start $NAME
 
 # Upgrade container
-echo -e '\e[1;92mUpdating container '$NAME' ...\e[0m\n'
+echo -e '\n\e[1;92mUpdating container '$NAME' ...\e[0m'
 sleep 2
 lxc exec $NAME -- apt-get update > /dev/null
 lxc exec $NAME -- apt-get upgrade -y > /dev/null
+sleep 2
 lxc exec $NAME -- apt-get autoremove -y > /dev/null
 
-echo -e '\e[1;92mConteiner '$NAME' is ready.\e[0m\n'
+echo -e '\n\e[1;92mConteiner '$NAME' is ready.\e[0m'
 lxc list
-echo -e '\e[1;92mInstallation LXD is completed.\e[0m\n'
+echo -e '\n\e[1;92mInstallation LXD is completed.\e[0m\n'
 sleep 2
 
 
 # clean & restart
-echo -e '\n\e[1;92mCleaning ...\e[0m\n'
+echo -e '\n\e[1;92mCleaning ...\e[0m'
 sudo apt-get autoremove -y > /dev/null
 history -c
 sleep 2
