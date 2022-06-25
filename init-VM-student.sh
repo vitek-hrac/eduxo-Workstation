@@ -15,9 +15,9 @@ function check_internet() {
   printf "Checking if you are online...\n"
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
-    echo -e '\e[1;92mOnline. Continuing.\e[0m\n'
+    echo -e '\n\e[1;92mOnline. Continuing.\e[0m'
   else
-    echo -e '\e[1;91mOffline. Go connect to the internet then run the script again.\e[0m\n'
+    echo -e '\n\e[1;91mOffline. Go connect to the internet then run the script again.\e[0m'
   fi
 }
 
@@ -292,7 +292,7 @@ sudo reboot
 # Post-autoinstall
 # ================
 # Set Background (earth.jpg)
-# Home Page: https://eduxo.ssipf.cz/3MrrhgZtr3ooAgcIpg6f/
+# Home Page: https://www.eduxo.cz/WGnWdwEidNzXPPinZMr7/
 
 # Create SSH key
 # ssh-keygen -q -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -N ""
