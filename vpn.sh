@@ -23,14 +23,18 @@ if ! dpkg --get-selections | grep -qw zerotier;then
     
     # instalace balicku
     curl -s https://install.zerotier.com | sudo bash > /dev/null
-    sudo zerotier-cli join 123cd0042f647483
-    sudo zerotier-cli status
-    sudo zerotier-cli listnetworks
-    sleep 3
     
     echo -e '\n\e[1;92mInstalace ZeroTier je kompletni, PC se restartuje!\e[0m\n'
     sleep 3
-    reboot
 else
     echo -e '\n\e[1;92mZeroTier je jiz nainstalovan!\e[0m\n'
 fi
+
+# pripojeni do VPN
+echo -e '\n\e[1;92mZadejte ID site ke ktere se chcete připojit:\e[0m'
+read NETID
+
+sudo zerotier-cli join $NETID
+sudo zerotier-cli status
+sudo zerotier-cli listnetworks
+sleep 3
