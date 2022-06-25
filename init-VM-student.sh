@@ -22,8 +22,9 @@ function check_internet() {
 }
 
 check_internet
-sleep 2
 
+
+echo -e '\n\e[1;92mStart installation.\e[0m'
 sudo sh -c 'echo "
 # Edit /etc/hosts
 127.0.0.1       localhost
