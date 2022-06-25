@@ -277,7 +277,7 @@ lxc start $NAME
 
 # Upgrade container
 echo -e '\e[1;92mUpdating container '$NAME' ...\e[0m\n'
-sleep 
+sleep 2
 lxc exec $NAME -- apt-get update > /dev/null
 lxc exec $NAME -- apt-get upgrade -y > /dev/null
 lxc exec $NAME -- apt-get autoremove -y > /dev/null
