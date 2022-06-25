@@ -42,7 +42,7 @@ ff02::2 ip6-allrouters" > /etc/hosts'
 sudo apt-get install -y git > /dev/null
 
 # Add GIT repository to known_hosts
-mkdir $HOME/.ssh
+# mkdir $HOME/.ssh
 sh -c 'echo "|1|VSLCHr+ezHBxkFD9rRAYCxw6kFE=|77bNivll371MzWKyYmzQ8uBTqIE= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
 |1|Nf+XGG/H0UPPUv4yup3G367CfvI=|wZ+hb+yLGjYapC1ap1R/93bL7zs= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 |1|QHTXH/m6GX3LiI27BD9LbgC2gmE=|ZLnxLbggMb36OPCLJMkls1IgfDQ= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" > $HOME/.ssh/known_hosts'
@@ -105,7 +105,7 @@ fZy3vWjYrVSzAAAADnN5c2FkbWluQGVkdXhvAQIDBA==
 chmod 600 $HOME/.ssh/id_rsa
 
 # GIT clone
-git clone git@github.com:eduxo/eduxo.git > /dev/null
+DEBIAN_FRONTEND=noninteractive git clone git@github.com:eduxo/eduxo.git > /dev/null
 
 
 # Install upgrades and basic programs
@@ -136,8 +136,8 @@ sleep 2
 # GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
 echo -e '\n\e[1;92mInstalling program GNS3, wait for completion.\e[0m'
 sleep 2
-sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
-sudo apt-get update > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:gns3/ppa > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
 unset DEBIAN_FRONTEND
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
