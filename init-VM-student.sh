@@ -277,7 +277,7 @@ lxc start $NAME
 
 # Upgrade container
 echo -e '\e[1;92mUpdating container '$NAME' ...\e[0m\n'
-sleep 2
+sleep 
 lxc exec $NAME -- apt-get update > /dev/null
 lxc exec $NAME -- apt-get upgrade -y > /dev/null
 lxc exec $NAME -- apt-get autoremove -y > /dev/null
@@ -295,7 +295,7 @@ sudo apt-get autoremove -y > /dev/null
 history -c
 sleep 2
 echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
-sleep 2
+sleep 3
 sudo reboot
 
 
