@@ -257,7 +257,7 @@ rm $HOME/input.yaml
     
 # Create container
 NAME="server"
-echo -e '\n\e[1;92mDeploying container '$NAME' ...\e[0m'
+echo -e '\e[0;92mDeploying container '$NAME' ...\e[0m'
 lxc launch ubuntu:lts $NAME  > /dev/null
 
 # Add user to container
@@ -277,14 +277,14 @@ lxc config device set $NAME eth0 ipv4.address 10.20.30.40
 lxc start $NAME
 
 # Upgrade container
-echo -e '\n\e[1;92mUpdating container '$NAME' ...\e[0m'
+echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
 sleep 2
 lxc exec $NAME -- apt-get update > /dev/null
 lxc exec $NAME -- apt-get upgrade -y > /dev/null
 sleep 2
 lxc exec $NAME -- apt-get autoremove -y > /dev/null
 
-echo -e '\n\e[1;92mConteiner '$NAME' is ready.\e[0m'
+echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
 lxc list
 echo -e '\n\e[1;92mInstallation LXD is completed.\e[0m\n'
 sleep 2
