@@ -15,9 +15,9 @@ function check_internet() {
   printf "Checking if you are online...\n"
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
-    echo -e '\n\e[1;92mOnline. Continuing.\e[0m'
+    echo -e '\e[0;92mOnline. Continuing.\e[0m'
   else
-    echo -e '\n\e[1;91mOffline. Go connect to the internet then run the script again.\e[0m'
+    echo -e '\e[0;91mOffline. Go connect to the internet then run the script again.\e[0m'
   fi
 }
 
