@@ -24,7 +24,7 @@ function check_internet() {
 check_internet
 
 
-echo -e '\n\e[1;92mStart installation.\e[0m'
+echo -e '\n\e[1;92mStart installation.\e[0m\n'
 sudo sh -c 'echo "
 # Edit /etc/hosts
 127.0.0.1       localhost
@@ -108,7 +108,7 @@ git clone --quiet git@github.com:eduxo/eduxo.git 2> /dev/null
 
 
 # Install upgrades and basic programs
-echo -e '\n\e[1;92mInstalling basic programs, wait for completion.\e[0m'
+echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
 sudo apt-get update -y > /dev/null
 sudo apt-get upgrade -y > /dev/null
 sudo apt-get install -y tigervnc-viewer asciinema > /dev/null
@@ -126,11 +126,11 @@ echo "PacketTracer PacketTracer_810_amd64/accept-eula select true" | sudo debcon
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_811_Ubuntu_64bit.deb  > /dev/null
 rm CiscoPacketTracer_811_Ubuntu_64bit.deb > /dev/null
 
-echo -e '\n\e[1;92mInstallation basic programs is completed.\e[0m\n'
+echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
 
 
 # GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
-echo -e '\n\e[1;92mInstalling program GNS3, wait for completion.\e[0m'
+echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
 sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
 sudo apt-get update > /dev/null
 sudo apt-get install -y gns3-gui gns3-server > /dev/null
@@ -163,11 +163,11 @@ udp_end_port_range = 20000
 [Qemu]
 enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
 
-echo -e '\n\e[1;92mInstallation GNS3 is completed.\e[0m\n'
+echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
 
 
 # Install Docker (https://docs.docker.com/engine/install/ubuntu/)
-echo -e '\n\e[1;92mInstalling Docker, wait for completion.\e[0m'
+echo -e '\n\e[0;92mInstalling Docker, wait for completion.\e[0m'
 
 # Uninstall old versions
 # sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -199,11 +199,11 @@ sudo usermod -aG docker $USER > /dev/null
 sudo docker pull portainer/portainer-ce:latest > /dev/null
 sudo docker run -d -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest > /dev/null
      
-echo -e '\n\e[1;92mInstallation Docker is completed.\e[0m\n'
+echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
 
 
 # Install LXD
-echo -e '\n\e[1;92mInstalling LXD, wait for completion.\e[0m'
+echo -e '\n\e[0;92mInstalling LXD, wait for completion.\e[0m'
 sudo snap install lxd > /dev/null
 
 # Add your user to the lxd group
@@ -274,11 +274,11 @@ lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/nu
 
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
 lxc list
-echo -e '\n\e[1;92mInstallation LXD is completed.\e[0m\n'
+echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 
 
 # clean & restart
-echo -e '\n\e[1;92mCleaning ...\e[0m'
+echo -e '\n\e[0;92mCleaning ...\e[0m'
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
 unset DEBIAN_FRONTEND
