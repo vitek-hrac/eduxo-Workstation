@@ -106,6 +106,10 @@ chmod 600 $HOME/.ssh/id_rsa
 # GIT clone
 git clone --quiet git@github.com:eduxo/eduxo.git 2> /dev/null
 
+# Update GIT eduxo on login
+sh -c 'echo "
+cd /home/sysadmin/eduxo/ && git pull
+" >> $HOME/.profile'
 
 # Install upgrades and basic programs
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
