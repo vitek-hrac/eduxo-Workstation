@@ -104,7 +104,7 @@ fZy3vWjYrVSzAAAADnN5c2FkbWluQGVkdXhvAQIDBA==
 chmod 600 $HOME/.ssh/id_rsa
 
 # GIT clone
-git clone -q git@github.com:eduxo/eduxo.git 2> /dev/null 2>&1
+git clone -q git@github.com:eduxo/eduxo.git > /dev/null 2>&1
 
 # Update GIT eduxo on login
 sh -c 'echo "
