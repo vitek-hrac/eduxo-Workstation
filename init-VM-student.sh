@@ -271,9 +271,7 @@ echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
-
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
-lxc list
 echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 
 
@@ -282,6 +280,7 @@ echo -e '\n\e[0;92mCleaning ...\e[0m'
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
 unset DEBIAN_FRONTEND
+
 echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
 sleep 3
 sudo reboot
