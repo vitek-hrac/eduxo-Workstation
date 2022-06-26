@@ -45,7 +45,7 @@ sudo apt-get install -y git > /dev/null
 # Add GIT repository to known_hosts
 # mkdir $HOME/.ssh
 sh -c 'echo "|1|HhggqEyJadBN11zo9E0/PEjt1Cg=|8DX2DD/hI/bpACImL+FTJUgpWlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
-|1|P92CjOfHqBG3zHsVxHAZE9AHIb4=|Nqs+IB4YDaih6HNYrMbVG2dVM08= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" > $HOME/.ssh/known_hosts'
+" > $HOME/.ssh/known_hosts'
 chmod 644 $HOME/.ssh/known_hosts
 
 # Add public key
