@@ -44,7 +44,7 @@ sudo apt-get install -y git > /dev/null
 
 # Add GIT repository to known_hosts
 # mkdir $HOME/.ssh
-sh -c 'echo "|1|1BmJ8tBMQlZOCFxNDP5eIMv05+k=|RB4mxEzJh/1M7UJj8H5RqlZwHNo= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" > $HOME/.ssh/known_hosts'
+ssh-keyscan github.com >> ~/.ssh/known_hosts > /dev/null
 chmod 644 $HOME/.ssh/known_hosts
 
 # Add public key
@@ -104,11 +104,12 @@ fZy3vWjYrVSzAAAADnN5c2FkbWluQGVkdXhvAQIDBA==
 chmod 600 $HOME/.ssh/id_rsa
 
 # GIT clone
-git clone --quiet git@github.com:eduxo/eduxo.git 2> /dev/null
+git clone -q git@github.com:eduxo/eduxo.git 2> /dev/null 2>&1
 
 # Update GIT eduxo on login
 sh -c 'echo "
-cd /home/sysadmin/eduxo/ && git pull
+# eduxo
+cd /home/sysadmin/eduxo/ && git pull > /dev/null 2>&1
 " >> $HOME/.profile'
 
 # Install upgrades and basic programs
