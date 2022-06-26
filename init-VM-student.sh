@@ -110,6 +110,7 @@ git clone -q git@github.com:eduxo/eduxo.git > /dev/null 2>&1
 sh -c 'echo "
 # eduxo
 cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+cp $HOME/eduxo/GNS3/configs/gns3_controller.conf $HOME/.config/GNS3/2.2/
 " >> $HOME/.profile'
 
 # Install upgrades and basic programs
