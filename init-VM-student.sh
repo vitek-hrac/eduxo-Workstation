@@ -1,4 +1,4 @@
-# Initial Installation EDUXO Workstation
+# Initial Installation eduxo Workstation
 # ======================================
 
 # Must be install manual
