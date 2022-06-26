@@ -133,7 +133,7 @@ echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
 echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
 sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
 sudo apt-get update > /dev/null
-sudo apt-get install -y gns3-gui gns3-server > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
 #/usr/bin/gns3server
