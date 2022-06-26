@@ -44,7 +44,7 @@ sudo apt-get install -y git > /dev/null
 
 # Add GIT repository to known_hosts
 # mkdir $HOME/.ssh
-ssh-keyscan github.com >> ~/.ssh/known_hosts > /dev/null
+ssh-keyscan github.com >> $HOME/.ssh/known_hosts > /dev/null
 chmod 644 $HOME/.ssh/known_hosts
 
 # Add public key
