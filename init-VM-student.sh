@@ -109,7 +109,7 @@ git clone -q git@github.com:eduxo/eduxo.git 2> /dev/null 2>&1
 # Update GIT eduxo on login
 sh -c 'echo "
 # eduxo
-cd /home/sysadmin/eduxo/ && git pull > /dev/null 2>&1
+cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 " >> $HOME/.profile'
 
 # Install upgrades and basic programs
