@@ -43,7 +43,7 @@ ff02::2 ip6-allrouters" > /etc/hosts'
 sudo apt-get install -y git > /dev/null
 
 # Add GIT repository to known_hosts
-# mkdir $HOME/.ssh
+mkdir $HOME/.ssh
 sh -c 'echo "|1|1BmJ8tBMQlZOCFxNDP5eIMv05+k=|RB4mxEzJh/1M7UJj8H5RqlZwHNo= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" > $HOME/.ssh/known_hosts'
 chmod 644 $HOME/.ssh/known_hosts
 
