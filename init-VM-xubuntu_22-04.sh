@@ -126,11 +126,11 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark > /dev/null
 sudo adduser $USER wireshark > /dev/null
 
 
-# Install PackerTracer (CiscoPacketTracer_811_Ubuntu_64bit.deb)
-wget -q --no-check-certificate 'https://drive.google.com/uc?id=19K-2Y9JU-6rgP9I6Cap7uP03UGIsdQCb&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_811_Ubuntu_64bit.deb'
+# Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
+wget -q --no-check-certificate 'https://drive.google.com/uc?id=1wIY2XxRshMLwWlO_ki5WRUTC1wYRUl0z&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_820_Ubuntu_64bit.deb'
 echo "PacketTracer PacketTracer_810_amd64/accept-eula select true" | sudo debconf-set-selections  > /dev/null
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_811_Ubuntu_64bit.deb  > /dev/null
-rm CiscoPacketTracer_811_Ubuntu_64bit.deb > /dev/null
+rm CiscoPacketTracer_820_Ubuntu_64bit.deb > /dev/null
 
 echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
 
@@ -294,8 +294,5 @@ sudo reboot
 
 # Post-autoinstall
 # ================
-# Set Background (earth.jpg)
-# Home Page: https://www.eduxo.cz/WGnWdwEidNzXPPinZMr7/
-
-# Create SSH key
-# ssh-keygen -q -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -N ""
+# Set Background
+# Set Homepage
