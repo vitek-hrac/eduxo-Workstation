@@ -129,7 +129,7 @@ sudo adduser $USER wireshark > /dev/null
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
 wget -q --no-check-certificate 'https://drive.google.com/uc?id=1wIY2XxRshMLwWlO_ki5WRUTC1wYRUl0z&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_820_Ubuntu_64bit.deb'
 echo "PacketTracer PacketTracer_810_amd64/accept-eula select true" | sudo debconf-set-selections  > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_811_Ubuntu_64bit.deb  > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_820_Ubuntu_64bit.deb  > /dev/null
 rm CiscoPacketTracer_820_Ubuntu_64bit.deb > /dev/null
 
 echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
