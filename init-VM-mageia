@@ -39,8 +39,11 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters" > /etc/hosts'
 
 
+sudo sh -c 'echo "eduxo" > /etc/hostname'
+
+
 # Install GIT
-sudo apt-get install -y git > /dev/null
+sudo dnf install -y git > /dev/null
 
 # Add GIT repository to known_hosts
 mkdir $HOME/.ssh
@@ -115,15 +118,13 @@ cp $HOME/eduxo/GNS3/configs/gns3_controller.conf $HOME/.config/GNS3/2.2/
 
 # Install upgrades and basic programs
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
-sudo apt-get update -y > /dev/null
-sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y tigervnc-viewer asciinema > /dev/null
+sudo dnf update -y > /dev/null
+sudo dnf install -y tigervnc asciinema > /dev/null
 
 
 # Install Wireshark
-echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark > /dev/null
-sudo adduser $USER wireshark > /dev/null
+sudo dnf install -y wireshark > /dev/null
+sudo usermod -a -G wireshark $USER > /dev/null
 
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
