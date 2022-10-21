@@ -20,11 +20,11 @@ function check_internet() {
 check_internet
 
 # Create container
-echo -e '\n\e[0;92mVytvarim kontejner ...\e[0m'
+echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
 lxc launch ubuntu:lts web-server
 
 # Setting container
-echo -e '\n\e[0;92mNastavuji kontejner ...\e[0m'
+echo -e '\e[0;92mNastavuji kontejner...\e[0m'
 
 # Add user to container
 lxc exec web-server -- groupadd sysadmin
@@ -41,14 +41,18 @@ lxc network attach lxdbr0 web-server eth0 eth0
 lxc config device set web-server eth0 ipv4.address 10.20.30.41
 lxc start web-server
 
-# Upgrade container
-lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
-lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
-lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt install nginx -y > /dev/null
-lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
+# Upgrade container - NEFUNGUJE - DOLADIT INSTALACI NGINX
+#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
+#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
+#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get install nginx -y > /dev/null
+#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 
-sleep 2
-echo -e '\n\e[1;92mKontejner je pripraven.\e[0m\n'
+# Edit /etc/hosts
+echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
+sudo sh -c 'echo "
+10.20.30.41     web-server.eduxo.lab	web-server" >> /etc/hosts'
 
-lxc list
-echo -e '\n'
+echo -e '\n\e[0;92mKontejner je pripraven:\e[0m
+Container-name: web-server
+Domain-name: web-server.eduxo.lab
+IP adresa: 10.20.30.41\n'
