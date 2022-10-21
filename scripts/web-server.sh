@@ -20,7 +20,7 @@ function check_internet() {
 check_internet
 
 # Create container
-echo -e '\e[0;92mVytvarim kontejner WEB.\e[0m'
+echo -e '\n\e[0;92mVytvarim kontejner WEB.\e[0m'
 lxc launch ubuntu:lts WEB
 
 # Setting container
