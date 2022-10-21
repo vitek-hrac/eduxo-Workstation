@@ -20,11 +20,13 @@ function check_internet() {
 check_internet
 
 # Create container
-echo -e '\n\e[0;92mInstaluji kontejner WEB.\e[0m'
+echo -e '\e[0;92mVytvarim kontejner WEB.\e[0m'
 lxc launch ubuntu:lts WEB
 
+# Setting container
+echo -e '\n\e[0;92mNastavuji kontejner\e[0m'
+
 # Add user to container
-echo -e '\n\e[0;92mVytvareni uzivatele sysadmin v kontejneru WEB\e[0m'
 lxc exec WEB -- groupadd sysadmin
 lxc exec WEB -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 lxc exec WEB -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
@@ -34,19 +36,18 @@ lxc exec WEB -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/'
 lxc exec WEB -- systemctl restart sshd
 
 # Add static IP adress
-echo -e '\e[0;92mNastaveni IP adresy kontejneru WEB na 10.20.30.41/24):\e[0m'
 lxc stop WEB
 lxc network attach lxdbr0 WEB eth0 eth0
 lxc config device set WEB eth0 ipv4.address 10.20.30.41
 lxc start WEB
 
 # Upgrade container
-echo -e '\e[0;92mPriprava kontejneru WEB\e[0m'
 lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
 lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
 lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt install nginx -y > /dev/null
 lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 
+sleep 2
 echo -e '\n\e[1;92mKontejner WEB je pripraven.\e[0m\n'
 
 lxc list
