@@ -20,11 +20,11 @@ function check_internet() {
 check_internet
 
 # Create container
-echo -e '\n\e[0;92mVytvarim kontejner WEB.\e[0m'
+echo -e '\n\e[0;92mVytvarim kontejner WEB...\e[0m'
 lxc launch ubuntu:lts WEB
 
 # Setting container
-echo -e '\n\e[0;92mNastavuji kontejner\e[0m'
+echo -e '\n\e[0;92mNastavuji kontejner...\e[0m'
 
 # Add user to container
 lxc exec WEB -- groupadd sysadmin
@@ -51,3 +51,4 @@ sleep 2
 echo -e '\n\e[1;92mKontejner WEB je pripraven.\e[0m\n'
 
 lxc list
+echo -e '\n'
