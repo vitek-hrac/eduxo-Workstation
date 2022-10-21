@@ -20,35 +20,35 @@ function check_internet() {
 check_internet
 
 # Create container
-echo -e '\n\e[0;92mVytvarim kontejner WEB...\e[0m'
-lxc launch ubuntu:lts WEB
+echo -e '\n\e[0;92mVytvarim kontejner ...\e[0m'
+lxc launch ubuntu:lts web-server
 
 # Setting container
-echo -e '\n\e[0;92mNastavuji kontejner...\e[0m'
+echo -e '\n\e[0;92mNastavuji kontejner ...\e[0m'
 
 # Add user to container
-lxc exec WEB -- groupadd sysadmin
-lxc exec WEB -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
-lxc exec WEB -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+lxc exec web-server -- groupadd sysadmin
+lxc exec web-server -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
+lxc exec web-server -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Enable SSH Password Authentication
-lxc exec WEB -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-lxc exec WEB -- systemctl restart sshd
+lxc exec web-server -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+lxc exec web-server -- systemctl restart sshd
 
 # Add static IP adress
-lxc stop WEB
-lxc network attach lxdbr0 WEB eth0 eth0
-lxc config device set WEB eth0 ipv4.address 10.20.30.41
-lxc start WEB
+lxc stop web-server
+lxc network attach lxdbr0 web-server eth0 eth0
+lxc config device set web-server eth0 ipv4.address 10.20.30.41
+lxc start web-server
 
 # Upgrade container
-lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
-lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
-lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt install nginx -y > /dev/null
-lxc exec WEB -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
+lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
+lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
+lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt install nginx -y > /dev/null
+lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 
 sleep 2
-echo -e '\n\e[1;92mKontejner WEB je pripraven.\e[0m\n'
+echo -e '\n\e[1;92mKontejner je pripraven.\e[0m\n'
 
 lxc list
 echo -e '\n'
