@@ -36,7 +36,8 @@ sudo sh -c 'echo "
 fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters" > /etc/hosts'
+ff02::2 ip6-allrouters
+" > /etc/hosts'
 
 
 # Install GIT
@@ -273,9 +274,9 @@ lxc start $NAME
 
 # Upgrade container
 echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
-lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
-lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
-lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
+lxc exec $NAME -- apt-get update > /dev/null
+lxc exec $NAME -- apt-get upgrade -y > /dev/null
+lxc exec $NAME -- apt-get autoremove -y > /dev/null
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
 echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 
