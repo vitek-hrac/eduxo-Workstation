@@ -49,7 +49,7 @@ lxc exec $NAME -- dnf install openssh-server nano -y > /dev/null
 # Add user to container
 echo -e '\n\e[0;92mVytvoreni uzivatele sysadmin v kontejneru '$NAME':\e[0m'
 lxc exec $NAME -- groupadd sysadmin
-lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G wheel -u 1000 sysadmin
+lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G wheel -u 1001 sysadmin
 lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Add static IP adress
