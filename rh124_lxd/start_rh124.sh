@@ -56,6 +56,9 @@ lxc network attach lxdbr0 $NAME eth0 eth0
 lxc config device set $NAME eth0 ipv4.address $IP
 lxc start $NAME
 
+# Import files
+lxc file push -r files/ $NAME/home/sysadmin/
+
 
 # --------------------------------NASTAVENÍ PRO SERVER A------------------------------------
 
@@ -111,6 +114,8 @@ lxc network attach lxdbr0 $NAME eth0 eth0
 lxc config device set $NAME eth0 ipv4.address $IP
 lxc start $NAME
 
+# Import files
+lxc file push -r files/ $NAME/home/sysadmin/
 
 
 # --------------------------------NASTAVENÍ PRO SERVER B------------------------------------
