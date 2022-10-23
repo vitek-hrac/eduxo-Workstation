@@ -20,39 +20,40 @@ function check_internet() {
 check_internet
 
 # Create container
+NAME="web-server"
 echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
-lxc launch ubuntu:lts web-server
+lxc launch ubuntu:lts $NAME
 
 # Setting container
 echo -e '\e[0;92mNastavuji kontejner...\e[0m'
 
 # Add user to container
-lxc exec web-server -- groupadd sysadmin
-lxc exec web-server -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
-lxc exec web-server -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+lxc exec $NAME -- groupadd sysadmin
+lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
+lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Enable SSH Password Authentication
-lxc exec web-server -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-lxc exec web-server -- systemctl restart sshd
+lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+lxc exec $NAME -- systemctl restart sshd
 
 # Add static IP adress
-lxc stop web-server
-lxc network attach lxdbr0 web-server eth0 eth0
-lxc config device set web-server eth0 ipv4.address 10.20.30.41
-lxc start web-server
+lxc stop $NAME
+lxc network attach lxdbr0 $NAME eth0 eth0
+lxc config device set $NAME eth0 ipv4.address 10.20.30.41
+lxc start $NAME
 
 # Upgrade container - NEFUNGUJE - DOLADIT INSTALACI NGINX
-#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
-#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
-#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get install nginx -y > /dev/null
-#lxc exec web-server -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get install nginx -y > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 
 # Edit /etc/hosts
 echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
 sudo sh -c 'echo "
-10.20.30.41     web-server.eduxo.lab	web-server" >> /etc/hosts'
+10.20.30.41     $NAME.eduxo.lab	$NAME" >> /etc/hosts'
 
 echo -e '\n\e[0;92mKontejner je pripraven:\e[0m
-Container-name: web-server
-Domain-name: web-server.eduxo.lab
+Container-name: $NAME
+Domain-name: $NAME.eduxo.lab
 IP adresa: 10.20.30.41\n'
