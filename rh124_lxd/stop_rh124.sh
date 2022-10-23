@@ -1,3 +1,11 @@
+#!/bin/bash
+
+# TESTOVANO:
+# Ubuntu 22.04
+
+# ZDROJE:
+# https://ubuntu.com/server/docs/containers-lxd
+
 # Stop containers
 echo -e '\n\e[0;92mZastavuji kontejnery...\e[0m'
 lxc stop servera
