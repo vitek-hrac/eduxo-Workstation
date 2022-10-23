@@ -76,3 +76,4 @@ Domain-name: '$NAME'.eduxo.lab
 IP adresa: '$IP'\n'
 
 lxc list
+echo -e '\n
