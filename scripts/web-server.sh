@@ -43,7 +43,7 @@ lxc exec $NAME -- groupadd sysadmin
 lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
-# Enable SSH Password Authentication
+# Enable SSH Password Authentication 
 lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 lxc exec $NAME -- systemctl restart sshd
 
