@@ -28,6 +28,12 @@ IP="10.20.30.41"
 echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
 lxc launch ubuntu:lts $NAME
 
+# Upgrade container
+echo -e '\n\e[0;92mCekejte...\e[0m'
+lxc exec $NAME -- apt-get -q update > /dev/null
+lxc exec $NAME -- apt-get -q upgrade -y > /dev/null
+lxc exec $NAME -- apt-get -q autoremove -y > /dev/null
+
 # Setting container
 echo -e '\e[0;92mNastavuji kontejner...\e[0m'
 
@@ -45,12 +51,6 @@ lxc stop $NAME
 lxc network attach lxdbr0 $NAME eth0 eth0
 lxc config device set $NAME eth0 ipv4.address $IP
 lxc start $NAME
-
-# Upgrade container
-echo -e '\n\e[0;92mCekejte...\e[0m'
-lxc exec $NAME -- apt-get update > /dev/null
-lxc exec $NAME -- apt-get upgrade -y > /dev/null
-lxc exec $NAME -- apt-get autoremove -y > /dev/null
 
 
 # --------------------------------NASTAVENÍ PRO ÚLOHY---------------------------------------
