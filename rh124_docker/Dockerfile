@@ -12,7 +12,8 @@ RUN dnf install openssh-server sudo nano -y
 
 # Přidání uživatele do sudo skupiny, vytvoření /home adresáře pro uživatele a nastavení shellu na /bin/bash
 RUN groupadd sysadmin
-RUN useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G wheel -u 1000 sysadmin
+RUN useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G wheel -u 1001 sysadmin
+RUN echo 'sysadmin:Netlab!23' | chpasswd
 
 # Import souborů do Docker image
 ADD files/ /home/sysadmin
@@ -24,11 +25,9 @@ RUN sed -ri 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/s
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
 
-# Nastavení hesla pro uživatele
-RUN echo 'sysadmin:Netlab!23' | chpasswd
-
 
 # --------------------------------NASTAVENÍ PRO ÚLOHY---------------------------------------
+
 
 
 # --------------------------------NASTAVENÍ PRO ÚLOHY---------------------------------------
