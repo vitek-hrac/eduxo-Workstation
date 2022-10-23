@@ -41,6 +41,7 @@ lxc stop $NAME
 lxc network attach lxdbr0 $NAME eth0 eth0
 lxc config device set $NAME eth0 ipv4.address 10.20.30.41
 lxc start $NAME
+sleep 5
 
 # Upgrade container - NEFUNGUJE - DOLADIT INSTALACI NGINX
 lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
