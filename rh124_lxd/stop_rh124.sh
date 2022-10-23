@@ -13,7 +13,7 @@ lxc stop serverb
 sleep 2
 
 # Delete containers
-echo -e '\n\e[0;92mMazu kontejnery...\e[0m'
+echo -e '\e[0;92mMazu kontejnery...\e[0m'
 lxc delete servera
 lxc delete serverb
 sleep 2
