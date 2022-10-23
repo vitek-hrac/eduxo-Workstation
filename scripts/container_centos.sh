@@ -36,6 +36,7 @@ lxc exec $NAME -- sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vau
 
 # Upgrade container
 echo -e '\e[0;92mAktualizuji kontejner...\e[0m'
+sleep 5
 lxc exec $NAME -- dnf update -y > /dev/null
 lxc exec $NAME -- dnf autoremove -y > /dev/null
 
