@@ -28,6 +28,11 @@ IP="10.20.30.41"
 echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
 lxc launch ubuntu:lts $NAME
 
+# Upgrade container
+lxc exec $NAME -- apt-get update > /dev/null
+lxc exec $NAME -- apt-get upgrade -y > /dev/null
+lxc exec $NAME -- apt-get autoremove -y > /dev/null
+
 # Setting container
 echo -e '\e[0;92mNastavuji kontejner...\e[0m'
 
@@ -46,11 +51,6 @@ lxc network attach lxdbr0 $NAME eth0 eth0
 lxc config device set $NAME eth0 ipv4.address $IP
 lxc start $NAME
 
-# Upgrade container - NEFUNGUJE - DOLADIT INSTALACI NGINX
-lxc exec $NAME -- apt-get update > /dev/null
-lxc exec $NAME -- apt-get upgrade -y > /dev/null
-lxc exec $NAME -- apt-get autoremove -y > /dev/null
-
 
 # --------------------------------NASTAVENÍ PRO ÚLOHY---------------------------------------
 
@@ -60,10 +60,12 @@ lxc exec $NAME -- apt-get install nginx -y > /dev/null
 
 
 # Edit /etc/hosts
-echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
+# echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
 sudo sh -c 'echo "'$IP'     '$NAME'.eduxo.lab	'$NAME'" >> /etc/hosts'
 
 echo -e '\n\e[0;92mKontejner je pripraven:\e[0m
 Container-name: '$NAME'
 Domain-name: '$NAME'.eduxo.lab
 IP adresa: '$IP'\n'
+
+lxc list
