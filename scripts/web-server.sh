@@ -30,21 +30,22 @@ lxc launch ubuntu:lts $NAME
 
 # Upgrade container
 echo -e '\e[0;92mAktualizuji kontejner...\e[0m'
-lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get -q update > /dev/null
-lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get -q upgrade -y > /dev/null
-lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get -q autoremove -y > /dev/null
+sleep 5
+lxc exec $NAME -- apt-get -q update > /dev/null
+lxc exec $NAME -- apt-get -q upgrade -y > /dev/null
+lxc exec $NAME -- apt-get -q autoremove -y > /dev/null
 
 # Setting container
 echo -e '\e[0;92mNastavuji kontejner...\e[0m'
 
 # Add user to container
-lxc exec $NAME -- groupadd sysadmin > /dev/null
-lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin > /dev/null
-lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd' > /dev/null
+lxc exec $NAME -- groupadd sysadmin
+lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
+lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Enable SSH Password Authentication
-lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config > /dev/null
-lxc exec $NAME -- systemctl restart sshd > /dev/null
+lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+lxc exec $NAME -- systemctl restart sshd
 
 # Add static IP adress
 lxc stop $NAME
@@ -68,5 +69,3 @@ echo -e '\n\e[0;92mKontejner je pripraven:\e[0m
 Container-name: '$NAME'
 Domain-name: '$NAME'.eduxo.lab
 IP adresa: '$IP'\n'
-
-lxc list
