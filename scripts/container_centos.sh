@@ -19,10 +19,14 @@ function check_internet() {
 
 check_internet
 
-   
-# Create container
+
+# Container 
 echo -e '\n\e[0;92mZadejte jmeno kontejneru:\e[0m'
 read NAME
+echo -e '\e[0;92mZadejte pozadovanou IP adresu kontejneru '$NAME' (ze site 10.20.30.0/24):\e[0m'
+read IP
+
+# Create container
 lxc launch images:centos/9-Stream $NAME
 
 lxc exec $NAME -- cd /etc/yum.repos.d/
@@ -34,8 +38,10 @@ echo -e '\e[0;92mAktualizace kontejneru '$NAME'\e[0m'
 lxc exec $NAME -- dnf update -y > /dev/null
 lxc exec $NAME -- dnf autoremove -y > /dev/null
 
-# Install  packages
-echo -e '\e[0;92mInstalace balicku '$NAME'\e[0m'
+# Setting container
+echo -e '\e[0;92mNastavuji kontejner...\e[0m'
+
+# Install SSH
 lxc exec $NAME -- dnf install openssh-server nano -y > /dev/null
 
 # Add user to container
@@ -45,8 +51,6 @@ lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G whee
 lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Add static IP adress
-echo -e '\e[0;92mZadejte pozadovanou IP adresu kontejneru '$NAME' (ze site 10.20.30.0/24):\e[0m'
-read IP
 lxc stop $NAME
 lxc network attach lxdbr0 $NAME eth0 eth0
 lxc config device set $NAME eth0 ipv4.address $IP
@@ -58,7 +62,14 @@ lxc start $NAME
 
 # --------------------------------NASTAVENÍ PRO ÚLOHY---------------------------------------
 
-sleep 2
-echo -e '\n\e[1;92mKontejner '$NAME' je pripraven.\e[0m\n'
+
+# Edit /etc/hosts
+# echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
+sudo sh -c 'echo "'$IP'     '$NAME'.eduxo.lab	'$NAME'" >> /etc/hosts'
+
+echo -e '\n\e[0;92mKontejner je pripraven:\e[0m
+Container-name: '$NAME'
+Domain-name: '$NAME'.eduxo.lab
+IP adresa: '$IP'\n'
 
 lxc list
