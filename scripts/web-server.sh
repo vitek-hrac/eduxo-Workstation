@@ -32,13 +32,13 @@ lxc launch ubuntu:lts $NAME
 echo -e '\e[0;92mNastavuji kontejner...\e[0m'
 
 # Add user to container
-lxc exec $NAME -- groupadd sysadmin
-lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
-lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+lxc exec $NAME -- groupadd sysadmin > /dev/null
+lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin > /dev/null
+lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd' > /dev/null
 
 # Enable SSH Password Authentication
-lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-lxc exec $NAME -- systemctl restart sshd
+lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config > /dev/null
+lxc exec $NAME -- systemctl restart sshd > /dev/null
 
 # Add static IP adress
 lxc stop $NAME
