@@ -29,10 +29,10 @@ echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
 lxc launch ubuntu:lts $NAME
 
 # Upgrade container
-echo -e '\e[0;92mAktualizace kontejneru '$NAME'\e[0m'
-lxc exec $NAME -- apt-get -q update > /dev/null
-lxc exec $NAME -- apt-get -q upgrade -y > /dev/null
-lxc exec $NAME -- apt-get -q autoremove -y > /dev/null
+echo -e '\e[0;92mAktualizuji kontejner...\e[0m'
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get -q update > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get -q upgrade -y > /dev/null
+lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get -q autoremove -y > /dev/null
 
 # Setting container
 echo -e '\e[0;92mNastavuji kontejner...\e[0m'
