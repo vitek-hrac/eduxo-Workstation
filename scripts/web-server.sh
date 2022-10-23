@@ -25,20 +25,21 @@ NAME="web-server"
 IP="10.20.30.41"
 
 # Create container
-echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
+echo -e '\n\e[0;92mVytvarim kontejner '$NAME'\e[0m'
 lxc launch ubuntu:lts $NAME
 
 # Upgrade container
-echo -e '\e[0;92mAktualizuji kontejner...\e[0m'
+echo -e '\e[0;92mAktualizuji kontejner '$NAME'\e[0m'
 sleep 5
 lxc exec $NAME -- apt-get -q update > /dev/null
 lxc exec $NAME -- apt-get -q upgrade -y > /dev/null
 lxc exec $NAME -- apt-get -q autoremove -y > /dev/null
 
 # Setting container
-echo -e '\e[0;92mNastavuji kontejner...\e[0m'
+echo -e '\e[0;92mNastavuji kontejner '$NAME'\e[0m'
 
 # Add user to container
+echo -e '\e[0;92mVytvorim uzivatele sysadmin v kontejneru '$NAME':\e[0m'
 lxc exec $NAME -- groupadd sysadmin
 lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1001 sysadmin
 lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
@@ -65,7 +66,7 @@ lxc exec $NAME -- apt-get install nginx -y > /dev/null
 # echo -e '\e[0;92mPro nastaveni domain-name je nutne opravneni:\e[0m'
 sudo sh -c 'echo "'$IP'     '$NAME'.eduxo.lab	'$NAME'" >> /etc/hosts'
 
-echo -e '\n\e[0;92mKontejner je pripraven:\e[0m
+echo -e '\n\e[0;92mKontejner '$NAME' je pripraven:\e[0m
 Container-name: '$NAME'
 Domain-name: '$NAME'.eduxo.lab
 IP adresa: '$IP'\n'
