@@ -21,8 +21,8 @@ check_internet
 
 
 # Container 
-NAME="webeee"
-IP="10.20.30.44"
+NAME="web-server"
+IP="10.20.30.41"
 
 # Create container
 echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
