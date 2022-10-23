@@ -27,6 +27,7 @@ echo -e '\e[0;92mZadejte pozadovanou IP adresu kontejneru '$NAME' (ze site 10.20
 read IP
 
 # Create container
+echo -e '\n\e[0;92mVytvarim kontejner...\e[0m'
 lxc launch images:centos/9-Stream $NAME
 
 lxc exec $NAME -- cd /etc/yum.repos.d/
