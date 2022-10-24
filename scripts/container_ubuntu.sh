@@ -41,7 +41,7 @@ lxc exec $NAME -- apt-get -q autoremove -y > /dev/null
 echo -e '\e[0;92mNastavuji kontejner '$NAME'\e[0m'
 
 # Add user to container
-echo -e '\e[0;92mVytvorim uzivatele sysadmin v kontejneru '$NAME':\e[0m'
+echo -e '\e[0;92mVytvarim uzivatele sysadmin v kontejneru '$NAME'\e[0m'
 lxc exec $NAME -- groupadd sysadmin
 lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1001 sysadmin
 lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd' 
