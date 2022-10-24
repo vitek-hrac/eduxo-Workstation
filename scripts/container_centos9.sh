@@ -75,5 +75,6 @@ Container-name: '$NAME'
 Domain-name: '$NAME'.eduxo.lab
 IP adresa: '$IP'\n'
 
+sleep 2
 lxc list
 echo -e '\n
