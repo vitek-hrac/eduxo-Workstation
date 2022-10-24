@@ -70,3 +70,7 @@ echo -e '\n\e[0;92mKontejner '$NAME' je pripraven:\e[0m
 Container-name: '$NAME'
 Domain-name: '$NAME'.eduxo.lab
 IP adresa: '$IP'\n'
+
+sleep 2
+lxc list
+echo -e '\n'
