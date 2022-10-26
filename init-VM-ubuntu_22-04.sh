@@ -117,7 +117,7 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
 sudo apt-get update -y > /dev/null
 sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y tigervnc-viewer asciinema > /dev/null
+sudo apt-get install -y tigervnc-viewer asciinema xrdp > /dev/null
 
 
 # Install Wireshark
