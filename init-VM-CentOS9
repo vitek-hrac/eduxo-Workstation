@@ -41,7 +41,7 @@ ff02::2 ip6-allrouters
 
 
 # Install GIT
-sudo apt-get install -y git > /dev/null
+sudo yum install -y git > /dev/null
 
 # Add GIT repository to known_hosts
 mkdir $HOME/.ssh
@@ -113,16 +113,16 @@ sh -c 'echo "
 cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 " >> $HOME/.profile'
 
+
 # Install upgrades and basic programs
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
-sudo apt-get update -y > /dev/null
-sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y tigervnc-viewer asciinema xrdp > /dev/null
+sudo yum update -y > /dev/null
+sudo yum install -y epel-release > /dev/null
+sudo yum install -y tigervnc-viewer asciinema xrdp > /dev/null
 
 
 # Install Wireshark
-echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark > /dev/null
+sudo yum install wireshark wireshark-qt -y > /dev/null
 sudo adduser $USER wireshark > /dev/null
 
 
