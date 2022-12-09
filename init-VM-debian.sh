@@ -81,16 +81,19 @@ rm CiscoPacketTracer_820_Ubuntu_64bit.deb > /dev/null
 echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
 
 
-# GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
+# Install GNS3
 echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
-sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
+sh -c 'echo "
+deb http://ppa.launchpad.net/gns3/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu trusty main
+" >> /etc/apt/sources.list'
 sudo apt-get update > /dev/null
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
 
 echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
 
 
-# Install Docker (https://docs.docker.com/engine/install/ubuntu/)
+# Install Docker (https://docs.docker.com/engine/install/debian/)
 echo -e '\n\e[0;92mInstalling Docker, wait for completion.\e[0m'
 
 # Uninstall old versions
@@ -105,16 +108,17 @@ sudo apt-get install -y \
     lsb-release > /dev/null
     
 # Add Docker’s official GPG key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg > /dev/null
+sudo mkdir -p /etc/apt/keyrings  > /dev/null
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg  > /dev/null
     
 # Set up the stable repository
 sudo sh -c 'echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
      
 # Install Docker Engine
 sudo apt-get update > /dev/null
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin  > /dev/null
      
 # Add your user to the docker group
 sudo usermod -aG docker $USER > /dev/null
@@ -128,7 +132,7 @@ echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
 
 # Install LXD
 echo -e '\n\e[0;92mInstalling LXD, wait for completion.\e[0m'
-sudo snap install lxd > /dev/null
+sudo apt install lxd > /dev/null
 
 # Add your user to the lxd group
 sudo adduser $USER lxd > /dev/null
