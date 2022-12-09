@@ -8,10 +8,6 @@
 # Install VBox Additions
 
 
-# Install Script
-# ==============
-
-
 # Test internet connection
 function check_internet() {
   printf "Checking if you are online...\n"
@@ -22,7 +18,6 @@ function check_internet() {
     echo -e '\e[0;91mOffline. Go connect to the internet then run the script again.\e[0m'
   fi
 }
-
 check_internet
 
 
@@ -219,4 +214,5 @@ sudo reboot
 # Post-autoinstall
 # ================
 # Set Background
-# Set Homepage
+# Set Homepage (www.eduxo.cz)
+# Associate files for Wireshark, GNS3 portable projects
