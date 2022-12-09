@@ -40,69 +40,15 @@ ff02::2 ip6-allrouters
 " > /etc/hosts'
 
 
+# Install upgrades and basic programs
+echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
+sudo apt-get update -y > /dev/null
+sudo apt-get upgrade -y > /dev/null
+sudo apt-get install -y tigervnc-viewer asciinema xrdp > /dev/null
+
+
 # Install GIT
 sudo apt-get install -y git > /dev/null
-
-# Add GIT repository to known_hosts
-mkdir $HOME/.ssh
-sh -c 'echo "|1|1BmJ8tBMQlZOCFxNDP5eIMv05+k=|RB4mxEzJh/1M7UJj8H5RqlZwHNo= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" > $HOME/.ssh/known_hosts'
-chmod 644 $HOME/.ssh/known_hosts
-
-# Add public key
-sh -c 'echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCVc6cW+yR2LnymMl9JE6K1LrsGG+9FXN+SZj/DLmX+b3giOeCVq+zeJjBJFYie6QP+GKCwoZgdyhQ2BXvoZC2u6mNmhFV/KUdHSw0S888j3HwtWlN5ESFnOfTtrFSAngcAnXWgG31d9zNXZ+oYeS7VEBYtI8Fgl86/1QwXnDijhVebeAM9L+SCJjewaBt4PFMtCJx8Y+ymdFK1gYuy3M+WDvnKDOzV/oVbSbx44deh+7+I9HxO8x/3Q0LiLOQTVViC1b8Q/NNYA8DzJauB8auU+Cg1VAk9zi5e+/bbTW+BPn5s38G50/4LPbmB8wNZhG5gwOIGdbAtr1bTSNoqHrI1O5EUOCAGkknMC/ADmADwcfALIR24aUvL7Wh8UwJqoEq69wNnjHdRupRcqRzLi/JPW/Xcp0Sn9NaHgZ21YOBlf5XzGLg+FhYIAWebxGW7hrnw68GCtObA+AylOMqOrMidbFgbf/9dVDL9RN756UeYifa/ZgAgDuttnAdl9DkDzZMJUHlJ+mbJJs9vjlFPLwWAY1Obg+PB4SYBaWz7r8XeYa4LGszK7ONU3nLRqxg247cDRtID+aIjehHCV+4aJfpwLl2unDbkIxwgg8gllOtdBIO9+TjmvFviSrWH257JxGahqV0llcoeZVJGe1gQuBmiGViJEo5CqJueUqhGADBhEw== sysadmin@eduxo" > $HOME/.ssh/id_rsa.pub'
-chmod 644 $HOME/.ssh/id_rsa.pub
-
-# Add private key
-sh -c 'echo "-----BEGIN OPENSSH PRIVATE KEY-----
-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
------END OPENSSH PRIVATE KEY-----" > $HOME/.ssh/id_rsa'
-chmod 600 $HOME/.ssh/id_rsa
 
 # GIT clone
 git clone -q git@github.com:eduxo/eduxo.git > /dev/null 2>&1
@@ -113,11 +59,11 @@ sh -c 'echo "
 cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 " >> $HOME/.profile'
 
-# Install upgrades and basic programs
-echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
-sudo apt-get update -y > /dev/null
-sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y tigervnc-viewer asciinema xrdp > /dev/null
+# Update GIT eduxo on login via rdp
+sh -c 'echo "
+# eduxo
+cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+" >> $HOME/.profile'
 
 
 # Install Wireshark
