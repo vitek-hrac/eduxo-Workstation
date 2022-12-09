@@ -1,5 +1,6 @@
-# Initial Installation eduxo Workstation
-# ======================================
+#!/bin/bash
+# This script prepare VM eduxo Workstation
+
 
 # Must be install manual
 # ======================
@@ -8,7 +9,7 @@
 
 # Install Script
 # ==============
-#!/bin/bash
+
 
 # Test internet connection
 function check_internet() {
