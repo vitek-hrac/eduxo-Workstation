@@ -1,5 +1,6 @@
 #!/bin/bash
-# This script prepare VM eduxo Workstation
+# This script prepare VM eduxo Workstation on Debian
+# Tested on Debian 11 (Bullseye)
 
 
 # Must be install manual
