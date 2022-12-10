@@ -81,7 +81,7 @@ echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
 sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
 python3-pyqt5.qtwebsockets \
 qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
-wireshark xtightvncviewer apt-transport-https \
+xtightvncviewer apt-transport-https \
 ca-certificates curl gnupg2 software-properties-common
 sudo pip3 install gns3-server
 sudo pip3 install gns3-gui
@@ -101,11 +101,11 @@ sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release > /dev/null
+    lsb-release
     
 # Add Docker’s official GPG key
-sudo mkdir -p /etc/apt/keyrings  > /dev/null
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg  > /dev/null
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
     
 # Set up the stable repository
 sudo sh -c 'echo \
@@ -114,15 +114,20 @@ sudo sh -c 'echo \
      
 # Install Docker Engine
 sudo apt-get update > /dev/null
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin  > /dev/null
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
      
 # Add your user to the docker group
-sudo usermod -aG docker $USER > /dev/null
+sudo usermod -aG docker $USER
      
 # Install Portainer
-sudo docker pull portainer/portainer-ce:latest > /dev/null
-sudo docker run -d -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest > /dev/null
-     
+sudo docker pull portainer/portainer-ce:latest
+sudo docker run -d \
+--name portainer \
+--restart always \
+--publish 9443:9443 \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+--volume portainer_data:/data portainer/portainer-ce:latest
+
 echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
 
 
