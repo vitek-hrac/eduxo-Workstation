@@ -44,7 +44,7 @@ echo -e '\e[0;92mInstalling basic programs, wait for completion.\e[0m\n'
 sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y tigervnc-viewer asciinema xrdp
+sudo apt-get install -y asciinema xrdp
 
 
 # Install GIT
@@ -88,7 +88,7 @@ sleep 3
 sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
 python3-pyqt5.qtwebsockets \
 qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
-xtightvncviewer tigervnc-standalone-server apt-transport-https \
+tigervnc-viewer tigervnc-standalone-server apt-transport-https \
 ca-certificates curl gnupg2 software-properties-common \
 xterm
 sudo pip3 install gns3-server
