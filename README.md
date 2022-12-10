@@ -1,11 +1,9 @@
-# eduxo Workstation
+# About eduxo Workstation
 
-**OS:** Ubuntu Mate 22.04 
+**OS:** Ubuntu 22.04  
 **Login:** sysadmin:Netlab!23  
 **Hostname:** eduxo  
-**FQDN:** eduxo.lab
-
-Tested with VirtualBox Version: 6.1.28 r147628 (Qt5.6.2)  
+**FQDN:** eduxo.lab 
 
 
 ## Requirements
@@ -79,27 +77,3 @@ Tested with VirtualBox Version: 6.1.28 r147628 (Qt5.6.2)
 - Windows server administration
 - Windows security
 - Windows network services management
-
-
-## Changelog
-- Version: 1.0.0	30-Apr-2022 - Jaroslav
-	- new VM (all-in-one)
-
-- Version: 1.1.0	15-Jun-2022 - Jaroslav
-	- add docker for compatible with HAXAGON
-	- set web homepage on www.eduxo.cz
-	- add secret repo eduxo
-	- add VPN client ZeroTier
-	
-- Version: 1.1.1	26-Jun-2022 - Jaroslav
-	- troubleshoot VPN client ZeroTier
-	
-- Version: 1.1.2	03-Sept-2022 - Jaroslav
-	- edit VirtualBox setting
-	
-- Version: 1.1.3	05-Sept-2022 - Jaroslav
-	- rebuild on Xubuntu 20.04
-	
-- Version: 1.2.0	01-Oct-2022 - Jaroslav
-	- rebuild on Ubuntu Mate 22.04
-	- change homepage
