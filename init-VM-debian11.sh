@@ -22,6 +22,7 @@ check_internet
 
 
 echo -e '\n\e[1;92mStart installation.\e[0m\n'
+sleep 3
 
 sudo sh -c 'echo "
 127.0.0.1     localhost
@@ -39,8 +40,8 @@ ff02::2 ip6-allrouters
 
 
 # Install upgrades and basic programs
-sleep 3
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
+sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y tigervnc-viewer asciinema xrdp
