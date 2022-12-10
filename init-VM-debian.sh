@@ -133,10 +133,14 @@ echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
 
 # Install LXD
 echo -e '\n\e[0;92mInstalling LXD, wait for completion.\e[0m'
-sudo apt install lxd > /dev/null
+sudo apt install -y snapd
+sudo snap install core
+sudo snap install lxd
+sudo ln -s /snap/bin/lxd /usr/bin/lxd
+sudo ln -s /snap/bin/lxc /usr/bin/lxc
 
 # Add your user to the lxd group
-sudo adduser $USER lxd > /dev/null
+sudo adduser $USER lxd
 
 sh -c 'echo "
 config: {}
@@ -144,7 +148,8 @@ networks:
 - config:
     ipv4.address: 10.20.30.1/24
     ipv4.nat: "true"
-    ipv6.address: auto
+    ipv6.address: 2001:db8:acad::1/64
+    ipv6.nat: "true"
   description: ""
   name: lxdbr0
   type: ""
@@ -154,7 +159,7 @@ storage_pools:
     size: 19GB
   description: ""
   name: default
-  driver: zfs
+  driver: btrfs
 profiles:
 - config: {}
   description: ""
@@ -172,34 +177,36 @@ projects: []
 cluster: null
 " > $HOME/input.yaml'
 
-lxd init --preseed < $HOME/input.yaml
+sudo lxd init --preseed < $HOME/input.yaml
 rm $HOME/input.yaml
     
 # Create container
 NAME="server"
 echo -e '\e[0;92mDeploying container '$NAME' ...\e[0m'
-lxc launch ubuntu:lts $NAME  > /dev/null
+sudo lxc launch images:debian/11 $NAME
 
 # Add user to container
-lxc exec $NAME -- groupadd sysadmin
-lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
-lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+sudo lxc exec $NAME -- groupadd sysadmin
+sudo lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
+sudo lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Enable SSH Password Authentication
-lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-lxc exec $NAME -- systemctl restart sshd 
+sudo lxc exec $NAME -- apt-get install -y openssh-server
 
 # Add static IP adress
-lxc stop $NAME
-lxc network attach lxdbr0 $NAME eth0 eth0
-lxc config device set $NAME eth0 ipv4.address 10.20.30.40
-lxc start $NAME
+sudo lxc stop $NAME
+sudo lxc network attach lxdbr0 $NAME eth0 eth0
+sudo lxc config device set $NAME eth0 ipv4.address 10.20.30.40
+lxc network set lxdbr0 ipv6.dhcp.stateful true
+sudo lxc config device set $NAME eth0 ipv6.address 2001:db8:acad::40
+sudo lxc start $NAME
+sleep 3
 
 # Upgrade container
 echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
-lxc exec $NAME -- apt-get update > /dev/null
-lxc exec $NAME -- apt-get upgrade -y > /dev/null
-lxc exec $NAME -- apt-get autoremove -y > /dev/null
+sudo lxc exec $NAME -- apt-get update
+sudo lxc exec $NAME -- apt-get upgrade -y
+sudo lxc exec $NAME -- apt-get autoremove -y
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
 echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 
