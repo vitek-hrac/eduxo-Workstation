@@ -43,7 +43,7 @@ sleep 3
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y asciinema xrdp
+sudo apt-get install -y tigervnc-viewer asciinema xrdp
 
 
 # Install GIT
@@ -87,21 +87,27 @@ sleep 3
 sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
 python3-pyqt5.qtwebsockets \
 qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
-xtightvncviewer apt-transport-https \
-ca-certificates curl gnupg2 software-properties-common
+xtightvncviewer tigervnc-standalone-server apt-transport-https \
+ca-certificates curl gnupg2 software-properties-common \
+xterm
 sudo pip3 install gns3-server
 sudo pip3 install gns3-gui
 
 # Install ubridge and dynamips (https://computingforgeeks.com/how-to-install-gns3-on-debian/)
-sudo apt install pcaputils libpcap-dev
+sudo apt-get install -y pcaputils libpcap-dev
 git clone https://github.com/GNS3/ubridge.git
-make $HOME/ubridge
-sudo make install $HOME/ubridge
+cd ubridge
+make
+sudo make install
+rm -rf $HOME/ubridge
 
-sudo apt install libelf-dev cmake
+sudo apt-get install -y libelf-dev cmake
 git clone https://github.com/GNS3/dynamips.git
-cmake $HOME/dynamips/
-sudo make install $HOME/dynamips/
+mkdir -p dynamips/build
+cd dynamips/build
+cmake ..
+sudo make install
+rm -rf $HOME/dynamips
 
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
