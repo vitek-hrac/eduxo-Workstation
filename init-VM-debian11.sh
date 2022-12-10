@@ -13,15 +13,15 @@ function check_internet() {
   printf "Checking if you are online...\n"
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
-    echo -e '\e[0;92mOnline. Continuing.\e[0m'
+    echo -e '\e[0;92mOnline. Continuing.\e[0m\n'
   else
-    echo -e '\e[0;91mOffline. Go connect to the internet then run the script again.\e[0m'
+    echo -e '\e[0;91mOffline. Go connect to the internet then run the script again.\e[0m\n'
   fi
 }
 check_internet
 
 
-echo -e '\n\e[1;92mStart installation.\e[0m\n'
+echo -e '\e[1;92mStart installation.\e[0m\n'
 sleep 3
 
 sudo sh -c 'echo "
@@ -40,7 +40,7 @@ ff02::2 ip6-allrouters
 
 
 # Install upgrades and basic programs
-echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
+echo -e '\e[0;92mInstalling basic programs, wait for completion.\e[0m\n'
 sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -83,7 +83,7 @@ sleep 3
 
 
 # Install GNS3
-echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
+echo -e '\e[0;92mInstalling program GNS3, wait for completion.\e[0m\n'
 sleep 3
 sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
 python3-pyqt5.qtwebsockets \
@@ -143,7 +143,7 @@ sleep 3
 
 
 # Install Docker (https://docs.docker.com/engine/install/debian/)
-echo -e '\n\e[0;92mInstalling Docker, wait for completion.\e[0m'
+echo -e '\e[0;92mInstalling Docker, wait for completion.\e[0m\n'
 sleep 3
 
 # Uninstall old versions
@@ -187,7 +187,7 @@ sleep 3
 
 
 # Install LXD
-echo -e '\n\e[0;92mInstalling LXD, wait for completion.\e[0m'
+echo -e '\e[0;92mInstalling LXD, wait for completion.\e[0m\n'
 sleep 3
 sudo apt install -y snapd
 sudo snap install core
@@ -238,7 +238,7 @@ rm $HOME/input.yaml
     
 # Create container
 NAME="server"
-echo -e '\e[0;92mDeploying container '$NAME' ...\e[0m'
+echo -e '\e[0;92mDeploying container '$NAME' ...\e[0m\n'
 sleep 3
 sudo lxc launch images:debian/11 $NAME
 
@@ -260,17 +260,17 @@ sudo lxc start $NAME
 sleep 3
 
 # Upgrade container
-echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
+echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m\n'
 sleep 3
 sudo lxc exec $NAME -- apt-get update
 sudo lxc exec $NAME -- apt-get upgrade -y
 sudo lxc exec $NAME -- apt-get autoremove -y
-echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m'
+echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m\n'
 echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 
 
 # clean & restart
-echo -e '\n\e[0;92mCleaning ...\e[0m'
+echo -e '\e[0;92mCleaning ...\e[0m\n'
 sleep 3
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
