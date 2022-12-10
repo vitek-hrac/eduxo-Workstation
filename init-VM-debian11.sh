@@ -92,6 +92,45 @@ ca-certificates curl gnupg2 software-properties-common
 sudo pip3 install gns3-server
 sudo pip3 install gns3-gui
 
+# Install ubridge and dynamips (https://computingforgeeks.com/how-to-install-gns3-on-debian/)
+sudo apt install pcaputils libpcap-dev
+git clone https://github.com/GNS3/ubridge.git
+make $HOME/ubridge
+sudo make install $HOME/ubridge
+
+sudo apt install libelf-dev cmake
+git clone https://github.com/GNS3/dynamips.git
+cmake $HOME/dynamips/
+sudo make install $HOME/dynamips/
+
+# Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
+mkdir -p $HOME/.config/GNS3/2.2/
+#/usr/bin/gns3server
+sh -c 'echo "[Server]
+path = /usr/bin/gns3server
+ubridge_path = ubridge
+host = localhost
+port = 3080
+images_path = /home/sysadmin/GNS3/images
+projects_path = /home/sysadmin/GNS3/projects
+appliances_path = /home/sysadmin/GNS3/appliances
+additional_images_paths = 
+symbols_path = /home/sysadmin/GNS3/symbols
+configs_path = /home/sysadmin/GNS3/configs
+report_errors = True
+auto_start = True
+allow_console_from_anywhere = False
+auth = True
+user = sysadmin
+password = Netlab!23
+protocol = http
+console_start_port_range = 5000
+console_end_port_range = 10000
+udp_start_port_range = 10000
+udp_end_port_range = 20000
+[Qemu]
+enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
+
 echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
 sleep 3
 
