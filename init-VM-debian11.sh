@@ -207,14 +207,14 @@ networks:
     ipv6.address: 2001:db8:acad::1/64
     ipv6.nat: "true"
   description: ""
-  name: lxdbr0
+  name: intranet
   type: ""
   project: default
 storage_pools:
 - config:
     size: 19GB
   description: ""
-  name: default
+  name: intranet
   driver: btrfs
 profiles:
 - config: {}
@@ -222,11 +222,11 @@ profiles:
   devices:
     eth0:
       name: eth0
-      network: lxdbr0
+      network: intranet
       type: nic
     root:
       path: /
-      pool: default
+      pool: intranet
       type: disk
   name: default
 projects: []
