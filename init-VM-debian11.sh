@@ -39,6 +39,7 @@ ff02::2 ip6-allrouters
 
 
 # Install upgrades and basic programs
+sleep 3
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -77,10 +78,12 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_820_U
 rm CiscoPacketTracer_820_Ubuntu_64bit.deb
 
 echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
+sleep 3
 
 
 # Install GNS3
 echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
+sleep 3
 sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
 python3-pyqt5.qtwebsockets \
 qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
@@ -90,10 +93,12 @@ sudo pip3 install gns3-server
 sudo pip3 install gns3-gui
 
 echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
+sleep 3
 
 
 # Install Docker (https://docs.docker.com/engine/install/debian/)
 echo -e '\n\e[0;92mInstalling Docker, wait for completion.\e[0m'
+sleep 3
 
 # Uninstall old versions
 # sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -132,10 +137,12 @@ sudo docker run -d \
 --volume portainer_data:/data portainer/portainer-ce:latest
 
 echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
+sleep 3
 
 
 # Install LXD
 echo -e '\n\e[0;92mInstalling LXD, wait for completion.\e[0m'
+sleep 3
 sudo apt install -y snapd
 sudo snap install core
 sudo snap install lxd
@@ -186,6 +193,7 @@ rm $HOME/input.yaml
 # Create container
 NAME="server"
 echo -e '\e[0;92mDeploying container '$NAME' ...\e[0m'
+sleep 3
 sudo lxc launch images:debian/11 $NAME
 
 # Add user to container
@@ -207,6 +215,7 @@ sleep 3
 
 # Upgrade container
 echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m'
+sleep 3
 sudo lxc exec $NAME -- apt-get update
 sudo lxc exec $NAME -- apt-get upgrade -y
 sudo lxc exec $NAME -- apt-get autoremove -y
@@ -216,6 +225,7 @@ echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 
 # clean & restart
 echo -e '\n\e[0;92mCleaning ...\e[0m'
+sleep 3
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
 unset DEBIAN_FRONTEND
