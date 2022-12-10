@@ -208,7 +208,7 @@ sudo lxc exec $NAME -- apt-get install -y openssh-server
 sudo lxc stop $NAME
 sudo lxc network attach lxdbr0 $NAME eth0 eth0
 sudo lxc config device set $NAME eth0 ipv4.address 10.20.30.40
-lxc network set lxdbr0 ipv6.dhcp.stateful true
+sudo lxc network set lxdbr0 ipv6.dhcp.stateful true
 sudo lxc config device set $NAME eth0 ipv6.address 2001:db8:acad::40
 sudo lxc start $NAME
 sleep 3
