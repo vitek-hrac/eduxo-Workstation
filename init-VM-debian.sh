@@ -22,16 +22,14 @@ check_internet
 
 
 echo -e '\n\e[1;92mStart installation.\e[0m\n'
+
 sudo sh -c 'echo "
-# Edit /etc/hosts
 127.0.0.1       localhost
-127.0.1.1       eduxo.lab	eduxo
+127.0.1.1	      eduxo.lab eduxo
 10.20.30.40     server.eduxo.lab	server
 
 # The following lines are desirable for IPv6 capable hosts
-::1     ip6-localhost ip6-loopback
-fe00::0 ip6-localnet
-ff00::0 ip6-mcastprefix
+::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 " > /etc/hosts'
@@ -39,16 +37,16 @@ ff02::2 ip6-allrouters
 
 # Install upgrades and basic programs
 echo -e '\n\e[0;92mInstalling basic programs, wait for completion.\e[0m'
-sudo apt-get update -y > /dev/null
-sudo apt-get upgrade -y > /dev/null
-sudo apt-get install -y tigervnc-viewer asciinema xrdp > /dev/null
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install -y asciinema xrdp
 
 
 # Install GIT
-sudo apt-get install -y git > /dev/null
+sudo apt-get install -y git
 
 # GIT clone
-git clone -q git@github.com:eduxo/eduxo.git > /dev/null 2>&1
+git clone https://github.com/eduxo/eduxo.git
 
 # Update GIT eduxo on login
 sh -c 'echo "
@@ -65,27 +63,28 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark > /dev/null
-sudo adduser $USER wireshark > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark
+sudo adduser $USER wireshark
 
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
-wget -q --no-check-certificate 'https://drive.google.com/uc?id=1wIY2XxRshMLwWlO_ki5WRUTC1wYRUl0z&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_820_Ubuntu_64bit.deb'
-echo "PacketTracer PacketTracer_820_amd64/accept-eula select true" | sudo debconf-set-selections  > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_820_Ubuntu_64bit.deb  > /dev/null
-rm CiscoPacketTracer_820_Ubuntu_64bit.deb > /dev/null
+wget --no-check-certificate 'https://drive.google.com/uc?id=1wIY2XxRshMLwWlO_ki5WRUTC1wYRUl0z&confirm=no_antivirus&export=download' -O 'CiscoPacketTracer_820_Ubuntu_64bit.deb'
+echo "PacketTracer PacketTracer_820_amd64/accept-eula select true" | sudo debconf-set-selections
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_820_Ubuntu_64bit.deb
+rm CiscoPacketTracer_820_Ubuntu_64bit.deb
 
 echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
 
 
 # Install GNS3
 echo -e '\n\e[0;92mInstalling program GNS3, wait for completion.\e[0m'
-sh -c 'echo "
-deb http://ppa.launchpad.net/gns3/ppa/ubuntu trusty main
-deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu trusty main
-" >> /etc/apt/sources.list'
-sudo apt-get update > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
+sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
+python3-pyqt5.qtwebsockets \
+qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
+wireshark xtightvncviewer apt-transport-https \
+ca-certificates curl gnupg2 software-properties-common
+sudo pip3 install gns3-server
+sudo pip3 install gns3-gui
 
 echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
 
@@ -215,4 +214,6 @@ sudo reboot
 # ================
 # Set Background
 # Set Homepage (www.eduxo.cz)
+# Set GNS3
+# Menu Education
 # Associate files for Wireshark, GNS3 portable projects
