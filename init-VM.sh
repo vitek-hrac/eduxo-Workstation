@@ -68,7 +68,7 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark
+sudo apt-get install -y wireshark
 sudo adduser $USER wireshark
 
 
@@ -79,66 +79,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_820_U
 rm CiscoPacketTracer_820_Ubuntu_64bit.deb
 
 echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
-sleep 3
-
-
-# Install GNS3
-echo -e '\e[0;92mInstalling program GNS3, wait for completion.\e[0m\n'
-sleep 3
-sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
-python3-pyqt5.qtwebsockets \
-qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
-tigervnc-viewer tigervnc-standalone-server apt-transport-https \
-ca-certificates curl gnupg2 software-properties-common \
-xterm
-sudo pip3 install gns3-server
-sudo pip3 install gns3-gui
-
-# Install ubridge and dynamips (https://computingforgeeks.com/how-to-install-gns3-on-debian/)
-sudo apt-get install -y pcaputils libpcap-dev
-cd $HOME/ && git clone https://github.com/GNS3/ubridge.git
-cd $HOME/ubridge && make
-cd $HOME/ubridge && sudo make install
-rm -rf $HOME/ubridge
-sleep 5
-
-sudo apt-get install -y libelf-dev cmake
-cd $HOME/ && git clone https://github.com/GNS3/dynamips.git
-mkdir $HOME/dynamips/build
-cd $HOME/dynamips/build && cmake ..
-cd $HOME/dynamips/build && sudo make install
-rm -rf $HOME/dynamips
-sleep 5
-
-# Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
-mkdir -p $HOME/.config/GNS3/2.2/
-#/usr/bin/gns3server
-sh -c 'echo "[Server]
-path = /usr/bin/gns3server
-ubridge_path = ubridge
-host = localhost
-port = 3080
-images_path = /home/sysadmin/GNS3/images
-projects_path = /home/sysadmin/GNS3/projects
-appliances_path = /home/sysadmin/GNS3/appliances
-additional_images_paths = 
-symbols_path = /home/sysadmin/GNS3/symbols
-configs_path = /home/sysadmin/GNS3/configs
-report_errors = True
-auto_start = True
-allow_console_from_anywhere = False
-auth = True
-user = sysadmin
-password = Netlab!23
-protocol = http
-console_start_port_range = 5000
-console_end_port_range = 10000
-udp_start_port_range = 10000
-udp_end_port_range = 20000
-[Qemu]
-enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
-
-echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
 sleep 3
 
 
@@ -269,6 +209,67 @@ sleep 3
 
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m\n'
 echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
+
+
+# Install GNS3
+echo -e '\e[0;92mInstalling program GNS3, wait for completion.\e[0m\n'
+sleep 3
+sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
+python3-pyqt5.qtwebsockets \
+qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
+tigervnc-viewer tigervnc-standalone-server apt-transport-https \
+ca-certificates curl gnupg2 software-properties-common \
+xterm
+sudo pip3 install gns3-server
+sudo pip3 install gns3-gui
+
+# Install ubridge and dynamips (https://computingforgeeks.com/how-to-install-gns3-on-debian/)
+sudo apt-get install -y pcaputils libpcap-dev
+cd $HOME/ && git clone https://github.com/GNS3/ubridge.git
+cd $HOME/ubridge && make
+cd $HOME/ubridge && sudo make install
+rm -rf $HOME/ubridge
+sleep 5
+
+sudo apt-get install -y libelf-dev cmake
+cd $HOME/ && git clone https://github.com/GNS3/dynamips.git
+mkdir $HOME/dynamips/build
+cd $HOME/dynamips/build && cmake ..
+cd $HOME/dynamips/build && sudo make install
+rm -rf $HOME/dynamips
+sleep 5
+
+# Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
+mkdir -p $HOME/.config/GNS3/2.2/
+#/usr/bin/gns3server
+sh -c 'echo "[Server]
+path = /usr/bin/gns3server
+ubridge_path = ubridge
+host = localhost
+port = 3080
+images_path = /home/sysadmin/GNS3/images
+projects_path = /home/sysadmin/GNS3/projects
+appliances_path = /home/sysadmin/GNS3/appliances
+additional_images_paths = 
+symbols_path = /home/sysadmin/GNS3/symbols
+configs_path = /home/sysadmin/GNS3/configs
+report_errors = True
+auto_start = True
+allow_console_from_anywhere = False
+auth = True
+user = sysadmin
+password = Netlab!23
+protocol = http
+console_start_port_range = 5000
+console_end_port_range = 10000
+udp_start_port_range = 10000
+udp_end_port_range = 20000
+[Qemu]
+enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
+
+echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
+sleep 3
+
 
 # clean & restart
 echo -e '\e[0;92mCleaning ...\e[0m\n'
