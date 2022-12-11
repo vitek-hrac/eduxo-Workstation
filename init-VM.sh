@@ -100,6 +100,7 @@ git clone https://github.com/GNS3/ubridge.git $HOME/ubridge
 cd $HOME/ubridge && make
 cd $HOME/ubridge && sudo make install
 rm -rf $HOME/ubridge
+sleep 3
 
 sudo apt-get install -y libelf-dev cmake
 git clone https://github.com/GNS3/dynamips.git $HOME/dynamips
@@ -107,6 +108,7 @@ mkdir $HOME/dynamips/build
 cd $HOME/dynamips/build && cmake ..
 cd $HOME/dynamips/build && sudo make install
 rm -rf $HOME/dynamips
+sleep 3
 
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
