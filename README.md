@@ -1,6 +1,6 @@
 # About eduxo Workstation
 
-**OS:** Ubuntu 22.04  
+**OS:** Debian 11 (Bullseye)  
 **Login:** sysadmin:Netlab!23  
 **Hostname:** eduxo  
 **FQDN:** eduxo.lab 
