@@ -13,15 +13,15 @@ function check_internet() {
   printf "Checking if you are online...\n"
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
-    echo -e '\e[0;92mOnline. Continuing.\e[0m\n'
+    echo -e '\e[0;92m\nOnline. Continuing.\e[0m'
   else
-    echo -e '\e[0;91mOffline. Go connect to the internet then run the script again.\e[0m\n'
+    echo -e '\e[0;91m\nOffline. Go connect to the internet then run the script again.\e[0m'
   fi
 }
 check_internet
 
 
-echo -e '\e[1;92mStart installation.\e[0m'
+echo -e '\e[1;92m\nStart installation.\e[0m'
 
 sudo sh -c 'echo "
 127.0.0.1     localhost
@@ -39,7 +39,7 @@ ff02::2 ip6-allrouters
 
 
 # Install upgrades and basic programs
-echo -e '\e[0;92mInstalling basic programs, wait for completion.\e[0m\n'
+echo -e '\e[0;92m\nInstalling basic programs, wait for completion.\e[0m'
 sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -78,12 +78,12 @@ echo "PacketTracer PacketTracer_820_amd64/accept-eula select true" | sudo debcon
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./CiscoPacketTracer_820_Ubuntu_64bit.deb
 rm CiscoPacketTracer_820_Ubuntu_64bit.deb
 
-echo -e '\e[0;92mInstallation basic programs is completed.\e[0m\n'
+echo -e '\e[0;92m\nInstallation basic programs is completed.\e[0m'
 sleep 3
 
 
 # Install Docker (https://docs.docker.com/engine/install/debian/)
-echo -e '\e[0;92mInstalling Docker, wait for completion.\e[0m\n'
+echo -e '\e[0;92m\nInstalling Docker, wait for completion.\e[0m'
 sleep 3
 
 # Uninstall old versions
@@ -130,13 +130,12 @@ sudo docker run -d \
 --volume /var/run/docker.sock:/var/run/docker.sock \
 containrrr/watchtower
 
-
-echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
+echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
 sleep 3
 
 
 # Install LXD
-echo -e '\e[0;92mInstalling LXD, wait for completion.\e[0m\n'
+echo -e '\e[0;92m\nInstalling LXD, wait for completion.\e[0m'
 sleep 3
 sudo apt install -y snapd
 sudo snap install core
@@ -187,7 +186,7 @@ rm $HOME/input.yaml
     
 # Create container
 NAME="server"
-echo -e '\e[0;92mDeploying container '$NAME' ...\e[0m\n'
+echo -e '\e[0;92m\nDeploying container '$NAME' ...\e[0m'
 sleep 3
 sudo lxc launch images:debian/11 $NAME
 
@@ -201,7 +200,7 @@ sleep 5
 sudo lxc exec $NAME -- apt-get install -y openssh-server
 
 # Upgrade container
-echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m\n'
+echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
 sleep 3
 sudo lxc exec $NAME -- apt-get update
 sudo lxc exec $NAME -- apt-get upgrade -y
@@ -216,12 +215,12 @@ sudo lxc config device set $NAME eth0 ipv6.address 2001:db8:acad::40
 sudo lxc start $NAME
 sleep 3
 
-echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m\n'
-echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
+echo -e '\e[0;92m\nConteiner '$NAME' is ready.\e[0m'
+echo -e '\e[0;92m\nInstallation LXD is completed.\e[0m'
 
 
 # Install GNS3
-echo -e '\e[0;92mInstalling program GNS3, wait for completion.\e[0m\n'
+echo -e '\e[0;92m\nInstalling program GNS3, wait for completion.\e[0m'
 sleep 3
 sudo apt-get install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
 python3-pyqt5.qtwebsockets \
@@ -276,18 +275,18 @@ udp_end_port_range = 20000
 [Qemu]
 enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
 
-echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
+echo -e '\e[0;92m\nInstallation GNS3 is completed.\e[0m'
 sleep 3
 
 
 # clean & restart
-echo -e '\e[0;92mCleaning ...\e[0m\n'
+echo -e '\e[0;92m\nCleaning ...\e[0m'
 sleep 3
 sudo apt-get autoremove -y
 history -c
 unset DEBIAN_FRONTEND
 
-echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
+echo -e '\n\e[1;92m\nInstallation is completed, restarting PC!\e[0m'
 sleep 3
 sudo reboot
 
