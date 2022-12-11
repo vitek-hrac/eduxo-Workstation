@@ -10,7 +10,7 @@
 
 # Test internet connection
 function check_internet() {
-  printf "Checking if you are online..."
+  printf "Checking if you are online...\n"
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
     echo -e '\e[0;92mOnline. Continuing.\e[0m\n'
@@ -274,7 +274,7 @@ echo -e '\e[0;92mCleaning ...\e[0m\n'
 sleep 3
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
 history -c
-unset DEBIAN_FRONTEND
+sudo unset DEBIAN_FRONTEND
 
 echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
 sleep 3
