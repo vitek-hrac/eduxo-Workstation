@@ -82,58 +82,6 @@ echo -e '\e[0;92m\nInstallation basic programs is completed.\e[0m'
 sleep 3
 
 
-# Install Docker (https://docs.docker.com/engine/install/debian/)
-echo -e '\e[0;92m\nInstalling Docker, wait for completion.\e[0m'
-sleep 3
-
-# Uninstall old versions
-# sudo apt-get remove docker docker-engine docker.io containerd runc
-    
-# Set up the repository
-# sudo apt-get update
-sudo apt-get install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-    
-# Add Docker’s official GPG key
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    
-# Set up the stable repository
-sudo sh -c 'echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
-     
-# Install Docker Engine
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-     
-# Add your user to the docker group
-sudo usermod -aG docker $USER
-     
-# Install Portainer
-sudo docker pull portainer/portainer-ce:latest
-sudo docker run -d \
---name portainer \
---restart always \
---publish 9443:9443 \
---volume /var/run/docker.sock:/var/run/docker.sock \
---volume portainer_data:/data portainer/portainer-ce:latest
-
-# Install Watchtower
-sudo docker pull containrrr/watchtower
-sudo docker run -d \
---name watchtower \
---restart always \
---volume /var/run/docker.sock:/var/run/docker.sock \
-containrrr/watchtower
-
-echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
-sleep 3
-
-
 # Install LXD
 echo -e '\e[0;92m\nInstalling LXD, wait for completion.\e[0m'
 sleep 3
@@ -215,8 +163,59 @@ sudo lxc config device set $NAME eth0 ipv6.address 2001:db8:acad::40
 sudo lxc start $NAME
 sleep 3
 
-echo -e '\e[0;92m\nConteiner '$NAME' is ready.\e[0m'
-echo -e '\e[0;92m\nInstallation LXD is completed.\e[0m'
+echo -e '\e[0;92m\nConteiner '$NAME' is ready.\nInstallation LXD is completed.\e[0m'
+
+
+# Install Docker (https://docs.docker.com/engine/install/debian/)
+echo -e '\e[0;92m\nInstalling Docker, wait for completion.\e[0m'
+sleep 3
+
+# Uninstall old versions
+# sudo apt-get remove docker docker-engine docker.io containerd runc
+    
+# Set up the repository
+# sudo apt-get update
+sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+    
+# Add Docker’s official GPG key
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    
+# Set up the stable repository
+sudo sh -c 'echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+     
+# Install Docker Engine
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+     
+# Add your user to the docker group
+sudo usermod -aG docker $USER
+     
+# Install Portainer
+sudo docker pull portainer/portainer-ce:latest
+sudo docker run -d \
+--name portainer \
+--restart always \
+--publish 9443:9443 \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+--volume portainer_data:/data portainer/portainer-ce:latest
+
+# Install Watchtower
+sudo docker pull containrrr/watchtower
+sudo docker run -d \
+--name watchtower \
+--restart always \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+containrrr/watchtower
+
+echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
+sleep 3
 
 
 # Install GNS3
