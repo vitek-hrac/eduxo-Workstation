@@ -122,6 +122,15 @@ sudo docker run -d \
 --volume /var/run/docker.sock:/var/run/docker.sock \
 --volume portainer_data:/data portainer/portainer-ce:latest
 
+# Install Watchtower
+sudo docker pull containrrr/watchtower
+sudo docker run -d \
+--name watchtower \
+--restart always \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+containrrr/watchtower
+
+
 echo -e '\e[0;92mInstallation Docker is completed.\e[0m\n'
 sleep 3
 
