@@ -51,7 +51,7 @@ sudo apt-get install -y asciinema xrdp
 sudo apt-get install -y git
 
 # GIT clone
-git clone https://github.com/eduxo/eduxo.git
+git clone https://github.com/eduxo/eduxo.git $HOME/eduxo
 
 # Update GIT eduxo on login
 sh -c 'echo "
@@ -61,9 +61,10 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 
 # Update GIT eduxo on login via rdp
 sh -c 'echo "
+
 # eduxo
 cd $HOME/eduxo/ && git pull > /dev/null 2>&1
-" >> $HOME/.profile'
+" >> /etc/xrdp/startwm.sh'
 
 
 # Install Wireshark
@@ -96,18 +97,16 @@ sudo pip3 install gns3-gui
 
 # Install ubridge and dynamips (https://computingforgeeks.com/how-to-install-gns3-on-debian/)
 sudo apt-get install -y pcaputils libpcap-dev
-git clone https://github.com/GNS3/ubridge.git
-cd ubridge
-make
-sudo make install
+git clone https://github.com/GNS3/ubridge.git $HOME/ubridge
+cd $HOME/ubridge && make
+cd $HOME/ubridge && sudo make install
 rm -rf $HOME/ubridge
 
 sudo apt-get install -y libelf-dev cmake
-git clone https://github.com/GNS3/dynamips.git
-mkdir -p dynamips/build
-cd dynamips/build
-cmake ..
-sudo make install
+git clone https://github.com/GNS3/dynamips.git $HOME/dynamips
+mkdir $HOME/dynamips/build
+cd $HOME/dynamips/build && cmake ..
+cd $HOME/dynamips/build && sudo make install
 rm -rf $HOME/dynamips
 
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
