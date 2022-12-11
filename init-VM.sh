@@ -50,7 +50,7 @@ sudo apt-get install -y asciinema xrdp mozo
 sudo apt-get install -y git
 
 # GIT clone
-git clone https://github.com/eduxo/eduxo.git $HOME/eduxo
+cd $HOME/ && git clone https://github.com/eduxo/eduxo.git
 
 # Update GIT eduxo on login
 sh -c 'echo "
