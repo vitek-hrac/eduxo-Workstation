@@ -96,19 +96,19 @@ sudo pip3 install gns3-gui
 
 # Install ubridge and dynamips (https://computingforgeeks.com/how-to-install-gns3-on-debian/)
 sudo apt-get install -y pcaputils libpcap-dev
-git clone https://github.com/GNS3/ubridge.git $HOME/ubridge
+cd $HOME/ && git clone https://github.com/GNS3/ubridge.git
 cd $HOME/ubridge && make
 cd $HOME/ubridge && sudo make install
 rm -rf $HOME/ubridge
-sleep 3
+sleep 5
 
 sudo apt-get install -y libelf-dev cmake
-git clone https://github.com/GNS3/dynamips.git $HOME/dynamips
+cd $HOME/ && git clone https://github.com/GNS3/dynamips.git
 mkdir $HOME/dynamips/build
 cd $HOME/dynamips/build && cmake ..
 cd $HOME/dynamips/build && sudo make install
 rm -rf $HOME/dynamips
-sleep 3
+sleep 5
 
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
@@ -207,14 +207,14 @@ networks:
     ipv6.address: 2001:db8:acad::1/64
     ipv6.nat: "true"
   description: ""
-  name: intranet
+  name: lxdbr0
   type: ""
   project: default
 storage_pools:
 - config:
     size: 19GB
   description: ""
-  name: intranet
+  name: lxdisk
   driver: btrfs
 profiles:
 - config: {}
@@ -222,11 +222,11 @@ profiles:
   devices:
     eth0:
       name: eth0
-      network: intranet
+      network: lxdbr0
       type: nic
     root:
       path: /
-      pool: intranet
+      pool: lxdisk
       type: disk
   name: default
 projects: []
@@ -257,7 +257,7 @@ sudo lxc config device set $NAME eth0 ipv4.address 10.20.30.40
 sudo lxc network set lxdbr0 ipv6.dhcp.stateful true
 sudo lxc config device set $NAME eth0 ipv6.address 2001:db8:acad::40
 sudo lxc start $NAME
-sleep 3
+sleep 5
 
 # Upgrade container
 echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m\n'
@@ -272,7 +272,7 @@ echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
 # clean & restart
 echo -e '\e[0;92mCleaning ...\e[0m\n'
 sleep 3
-sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null
+sudo apt-get autoremove -y
 history -c
 sudo unset DEBIAN_FRONTEND
 
@@ -286,7 +286,7 @@ sudo reboot
 # Set Background
 # Set Homepage (www.eduxo.cz)
 # Set GNS3
-# Menu Education
-# Associate files for Wireshark, GNS3 portable projects
+# Menu Education (mozo)
+# Associate files for GNS3 portable projects
 
 
