@@ -43,7 +43,7 @@ echo -e '\e[0;92mInstalling basic programs, wait for completion.\e[0m\n'
 sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y asciinema xrdp
+sudo apt-get install -y asciinema xrdp mozo
 
 
 # Install GIT
