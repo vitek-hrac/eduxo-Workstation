@@ -214,7 +214,7 @@ storage_pools:
 - config:
     size: 19GB
   description: ""
-  name: lxdisk
+  name: lxd
   driver: btrfs
 profiles:
 - config: {}
@@ -226,7 +226,7 @@ profiles:
       type: nic
     root:
       path: /
-      pool: lxdisk
+      pool: lxd
       type: disk
   name: default
 projects: []
@@ -246,9 +246,17 @@ sudo lxc launch images:debian/11 $NAME
 sudo lxc exec $NAME -- groupadd sysadmin
 sudo lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
 sudo lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+sleep 5
 
 # Enable SSH Password Authentication
 sudo lxc exec $NAME -- apt-get install -y openssh-server
+
+# Upgrade container
+echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m\n'
+sleep 3
+sudo lxc exec $NAME -- apt-get update
+sudo lxc exec $NAME -- apt-get upgrade -y
+sudo lxc exec $NAME -- apt-get autoremove -y
 
 # Add static IP adress
 sudo lxc stop $NAME
@@ -257,24 +265,17 @@ sudo lxc config device set $NAME eth0 ipv4.address 10.20.30.40
 sudo lxc network set lxdbr0 ipv6.dhcp.stateful true
 sudo lxc config device set $NAME eth0 ipv6.address 2001:db8:acad::40
 sudo lxc start $NAME
-sleep 5
-
-# Upgrade container
-echo -e '\e[0;92mUpdating container '$NAME' ...\e[0m\n'
 sleep 3
-sudo lxc exec $NAME -- apt-get update
-sudo lxc exec $NAME -- apt-get upgrade -y
-sudo lxc exec $NAME -- apt-get autoremove -y
+
 echo -e '\e[0;92mConteiner '$NAME' is ready.\e[0m\n'
 echo -e '\e[0;92mInstallation LXD is completed.\e[0m\n'
-
 
 # clean & restart
 echo -e '\e[0;92mCleaning ...\e[0m\n'
 sleep 3
 sudo apt-get autoremove -y
 history -c
-sudo unset DEBIAN_FRONTEND
+unset DEBIAN_FRONTEND
 
 echo -e '\n\e[1;92mInstallation is completed, restarting PC!\e[0m\n'
 sleep 3
