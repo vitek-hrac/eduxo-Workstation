@@ -12,6 +12,9 @@ There are several advantages to using the Debian operating system. Some of these
 4. It offers a wide range of tools and features that make it easy to set up and manage a server, including support for various server applications and services.
 5. It is a constantly evolving and improving platform, with regular updates and new versions being released. 
 
+
+## Basic information
+
 **OS:** Debian 11 (Bullseye)  
 **Login:** sysadmin:Netlab!23  
 **Hostname:** eduxo  
