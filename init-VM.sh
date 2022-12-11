@@ -10,7 +10,7 @@
 
 # Test internet connection
 function check_internet() {
-  printf "Checking if you are online...\n"
+  printf "Checking if you are online..."
   wget -q --spider http://github.com
   if [ $? -eq 0 ]; then
     echo -e '\e[0;92mOnline. Continuing.\e[0m\n'
@@ -21,8 +21,7 @@ function check_internet() {
 check_internet
 
 
-echo -e '\e[1;92mStart installation.\e[0m\n'
-sleep 3
+echo -e '\e[1;92mStart installation.\e[0m'
 
 sudo sh -c 'echo "
 127.0.0.1     localhost
