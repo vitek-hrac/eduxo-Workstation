@@ -218,6 +218,10 @@ echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
 sleep 3
 
 
+#sudo iptables -F FORWARD
+#sudo iptables -P FORWARD ACCEPT
+
+
 # Install GNS3
 echo -e '\e[0;92m\nInstalling program GNS3, wait for completion.\e[0m'
 sleep 3
