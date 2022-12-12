@@ -46,7 +46,7 @@ echo -e '\e[0;92m\nInstalling basic programs, wait for completion.\e[0m'
 sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y tigervnc-viewer asciinema xrdp
+sudo apt-get install -y firefox tigervnc-viewer asciinema xrdp
 
 
 # Install GIT
@@ -273,5 +273,5 @@ sudo reboot
 # Set Homepage (www.eduxo.cz)
 # Set GNS3
 # Menu Education (mozo)
-# Associate files for GNS3 portable projects
+
 
