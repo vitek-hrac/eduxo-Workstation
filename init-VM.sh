@@ -220,6 +220,8 @@ sleep 3
 
 #sudo iptables -F FORWARD
 #sudo iptables -P FORWARD ACCEPT
+#sudo iptables-save
+# nebo import cele tabulky (z ubuntu) iptables-restore < import_file
 
 
 # Install GNS3
