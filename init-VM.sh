@@ -217,11 +217,25 @@ containrrr/watchtower
 echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
 sleep 3
 
+#sudo apt-get install -y iptables-persistent
+#sudo systemctl enable netfilter-persistent.service
+##sudo iptables -P FORWARD ACCEPT
+#sudo iptables-save
+#sudo /sbin/iptables-save > /etc/iptables/rules.v4
+#sudo /sbin/ip6tables-save > /etc/iptables/rules.v6
 
 #sudo iptables -F FORWARD
 #sudo iptables -P FORWARD ACCEPT
 #sudo iptables-save
 # nebo import cele tabulky (z ubuntu) iptables-restore < import_file
+
+# Trouble Docker vs. LXD NETWORK
+sudo sh -c 'echo "
+{
+	"iptables": false
+}
+" >> /etc/docker/daemon.json'
+
 
 
 # Install GNS3
