@@ -1,6 +1,6 @@
 #!/bin/bash
-# This script prepare VM eduxo Workstation on Ubuntu 22.04
-# Tested on Ubuntu 22.04 Mate
+# This script prepare VM eduxo Workstation on Ubuntu Server 22.04
+# Tested on Ubuntu Server 22.04 Mate
 
 
 # Must be install manual
@@ -87,9 +87,11 @@ sleep 3
 
 # GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
 echo -e '\e[0;92m\nInstalling program GNS3, wait for completion.\e[0m'
+sleep 3
 sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
 sudo apt-get update > /dev/null
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server
+
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
 mkdir -p $HOME/.config/GNS3/2.2/
 #/usr/bin/gns3server
@@ -119,10 +121,12 @@ udp_end_port_range = 20000
 enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
 
 echo -e '\e[0;92m\nInstallation GNS3 is completed.\e[0m'
+sleep 3
 
 
 # Install Docker (https://docs.docker.com/engine/install/ubuntu/)
 echo -e '\e[0;92m\nInstalling Docker, wait for completion.\e[0m'
+sleep 3
 
 # Uninstall old versions
 # sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -195,7 +199,7 @@ storage_pools:
 - config:
     size: 19GB
   description: ""
-  name: lxd
+  name: lxdstorage
   driver: btrfs
 profiles:
 - config: {}
@@ -207,7 +211,7 @@ profiles:
       type: nic
     root:
       path: /
-      pool: lxd
+      pool: lxdstorage
       type: disk
   name: default
 projects: []
