@@ -24,13 +24,16 @@ check_internet
 echo -e '\e[1;92m\nStart installation.\e[0m'
 
 sudo sh -c 'echo "
-127.0.0.1     localhost
-127.0.1.1     eduxo.lab eduxo
+# Edit /etc/hosts
+127.0.0.1       localhost
+127.0.1.1       eduxo.lab	eduxo
 
-10.20.30.40   server.eduxo.lab	server
+10.20.30.40     server.eduxo.lab	server
 
 # The following lines are desirable for IPv6 capable hosts
-::1     localhost ip6-localhost ip6-loopback
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 
@@ -43,7 +46,7 @@ echo -e '\e[0;92m\nInstalling basic programs, wait for completion.\e[0m'
 sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y asciinema xrdp mozo
+sudo apt-get install -y tigervnc-viewer asciinema xrdp
 
 
 # Install GIT
@@ -115,7 +118,7 @@ udp_end_port_range = 20000
 [Qemu]
 enable_kvm = false" > $HOME/.config/GNS3/2.2/gns3_server.conf'
 
-echo -e '\e[0;92mInstallation GNS3 is completed.\e[0m\n'
+echo -e '\e[0;92m\nInstallation GNS3 is completed.\e[0m'
 
 
 # Install Docker (https://docs.docker.com/engine/install/ubuntu/)
