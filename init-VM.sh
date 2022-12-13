@@ -78,7 +78,7 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
-sudo apt-get install -y wireshark
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark
 sudo adduser $USER wireshark
 
 
@@ -95,8 +95,8 @@ sleep 3
 # GNS3 (https://docs.gns3.com/docs/getting-started/installation/linux/)
 echo -e '\e[0;92m\nInstalling program GNS3, wait for completion.\e[0m'
 sleep 3
-sudo add-apt-repository -y ppa:gns3/ppa > /dev/null
-sudo apt-get update > /dev/null
+sudo add-apt-repository -y ppa:gns3/ppa
+sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gns3-gui gns3-server
 
 # Uprava konfigurace (https://docs.gns3.com/docs/troubleshooting-faq/troubleshoot-gns3/)
