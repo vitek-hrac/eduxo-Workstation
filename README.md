@@ -1,21 +1,29 @@
 # About eduxo Workstation
 
-## Why do we use the Debian distribution?
+## Why do we use the Ubuntu Server distribution?
 
-There are several reasons why Debian is a good choice. One reason is that it is a stable and reliable platform, with a long history.
+There are several reasons why Ubuntu Server is a good choice. One reason is that it is a stable and reliable platform.
 
-There are several advantages to using the Debian operating system. Some of these include:
+There are several advantages to using the Ubuntu operating system. Some of these include:
 
-1. It offers a stable and reliable platform, with a history of being used in mission-critical environments.
+1. It offers a stable and reliable platform.
 2. It has a large and active community of users and developers, who contribute to the development and improvement of the operating system.
 3. It is versatile and can be used on a wide range of hardware platforms, making it a good choice for users with diverse computing needs.
 4. It offers a wide range of tools and features that make it easy to set up and manage a server, including support for various server applications and services.
 5. It is a constantly evolving and improving platform, with regular updates and new versions being released. 
 
 
+## How to get eduxo Workstation
+
+### 1. Download VM
+
+
+
+### 2. Running the ```init-VM.sh``` script
+
 ## Basic information
 
-**OS:** Debian 11 (Bullseye)  
+**OS:** Ubuntu Server 22.04  
 **Login:** sysadmin:Netlab!23  
 **Hostname:** eduxo  
 **FQDN:** eduxo.lab 
