@@ -79,7 +79,8 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 # Install Wireshark
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark
-sudo adduser $USER wireshark
+# Add your user to the wireshark group
+sudo adduser $USER wireshark > /dev/null
 
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
@@ -157,9 +158,8 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev
 # Install Docker Engine
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-     
 # Add your user to the docker group
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $USER > /dev/null
 
 # Install Portainer
 sudo docker pull portainer/portainer-ce:latest
@@ -186,9 +186,8 @@ sleep 3
 echo -e '\e[0;92m\nInstalling LXD, wait for completion.\e[0m'
 sleep 3
 sudo snap install lxd
-
 # Add your user to the lxd group
-sudo adduser $USER lxd
+sudo adduser $USER lxd > /dev/null
 
 sh -c 'echo "
 config: {}
@@ -235,13 +234,13 @@ sleep 3
 lxc launch ubuntu:lts $NAME
 
 # Add user to container
-lxc exec $NAME -- groupadd sysadmin
-lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
-lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
+lxc exec $NAME -- groupadd sysadmin > /dev/null
+lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin > /dev/null
+lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd' > /dev/null
 
 # Enable SSH Password Authentication
 lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-lxc exec $NAME -- systemctl restart sshd
+lxc exec $NAME -- systemctl restart sshd > /dev/null
 
 # Upgrade container
 echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
