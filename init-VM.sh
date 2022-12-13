@@ -54,7 +54,7 @@ sudo apt-get remove -y byobu plank redshift \
   libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
   evolution \
   celluloid rhythmbox webcamoid
-sudo apt-get autoremove -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
 # Install GIT
 sudo apt-get install -y git
@@ -234,20 +234,20 @@ sleep 3
 lxc launch ubuntu:lts $NAME
 
 # Add user to container
-lxc exec $NAME -- groupadd sysadmin > /dev/null
-lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin > /dev/null
-lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd' > /dev/null
+lxc exec $NAME -- groupadd sysadmin
+lxc exec $NAME -- useradd -rm -d /home/sysadmin -s /bin/bash -g sysadmin -G sudo -u 1000 sysadmin
+lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 
 # Enable SSH Password Authentication
 lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-lxc exec $NAME -- systemctl restart sshd > /dev/null
+lxc exec $NAME -- systemctl restart sshd
 
 # Upgrade container
 echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
 sleep 3
-sudo lxc exec $NAME -- apt-get update
-sudo lxc exec $NAME -- apt-get upgrade -y
-sudo lxc exec $NAME -- apt-get autoremove -y
+sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update
+sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
 # Add static IP adress
 sudo lxc stop $NAME
@@ -264,7 +264,7 @@ echo -e '\e[0;92m\nConteiner '$NAME' is ready.\nInstallation LXD is completed.\e
 # clean & restart
 echo -e '\e[0;92m\nCleaning ...\e[0m'
 sleep 3
-sudo apt-get autoremove -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 history -c
 unset DEBIAN_FRONTEND
 
