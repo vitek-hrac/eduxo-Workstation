@@ -54,7 +54,7 @@ sudo apt-get remove -y byobu plank redshift \
   libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
   evolution \
   celluloid rhythmbox webcamoid
-sudo apt-get DEBIAN_FRONTEND=noninteractive autoremove -y
+sudo apt-get autoremove -y
 
 # Install GIT
 sudo apt-get install -y git
@@ -248,7 +248,7 @@ echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
 sleep 3
 sudo lxc exec $NAME -- apt-get update
 sudo lxc exec $NAME -- apt-get upgrade -y
-sudo lxc exec $NAME -- apt-get DEBIAN_FRONTEND=noninteractive autoremove -y
+sudo lxc exec $NAME -- apt-get autoremove -y
 
 # Add static IP adress
 sudo lxc stop $NAME
@@ -265,7 +265,7 @@ echo -e '\e[0;92m\nConteiner '$NAME' is ready.\nInstallation LXD is completed.\e
 # clean & restart
 echo -e '\e[0;92m\nCleaning ...\e[0m'
 sleep 3
-sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
+sudo apt-get autoremove -y
 history -c
 unset DEBIAN_FRONTEND
 
