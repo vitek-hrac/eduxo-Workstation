@@ -13,6 +13,32 @@ There are several advantages to using the Ubuntu operating system. Some of these
 5. It is a constantly evolving and improving platform, with regular updates and new versions being released. 
 
 
+## What can I use eduxo Workstation for? 
+
+**This environment can be used to teach practical exercises in the areas of:**
+- Linux workstation administration,
+- Linux server administration,
+- Linux security,
+- Linux network service management,
+- introduction to computer networks,
+- switching and routing,
+- security in computer networks,
+- computer network administration and monitoring,
+- computer network diagnostics,
+- computer network design.
+- cryptography,
+- security of networks and services,
+- computer network administration and supervision,
+- detection and prevention of network attacks,
+- security testing.
+
+**This environment CANNOT be used to teach practical exercises in the areas of:**
+- Windows workstation administration
+- Windows server administration
+- Windows security
+- Windows network services management
+
+
 ## How to get eduxo Workstation
 
 ### 1. Download VM
@@ -79,27 +105,3 @@ There are several advantages to using the Ubuntu operating system. Some of these
 4. Sit back comfortably with a cup of good coffee and wait for the installation of all tools to complete.
 
 
-## Use 
-
-**This environment can be used to teach practical exercises in the areas of:**
-- Linux workstation administration,
-- Linux server administration,
-- Linux security,
-- Linux network service management,
-- introduction to computer networks,
-- switching and routing,
-- security in computer networks,
-- computer network administration and monitoring,
-- computer network diagnostics,
-- computer network design.
-- cryptography,
-- security of networks and services,
-- computer network administration and supervision,
-- detection and prevention of network attacks,
-- security testing.
-
-**This environment CANNOT be used to teach practical exercises in the areas of:**
-- Windows workstation administration
-- Windows server administration
-- Windows security
-- Windows network services management
