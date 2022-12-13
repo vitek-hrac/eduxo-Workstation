@@ -54,7 +54,7 @@ sudo apt-get remove -y byobu plank redshift \
   libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
   evolution \
   celluloid rhythmbox webcamoid
-sudo apt-get autoremove -y
+sudo apt-get DEBIAN_FRONTEND=noninteractive autoremove -y
 
 # Install GIT
 sudo apt-get install -y git
