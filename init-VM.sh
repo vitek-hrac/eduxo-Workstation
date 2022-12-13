@@ -187,7 +187,7 @@ echo -e '\e[0;92m\nInstalling LXD, wait for completion.\e[0m'
 sleep 3
 sudo snap install lxd
 # Add your user to the lxd group
-sudo adduser $USER lxd > /dev/null
+sudo adduser $USER lxd
 
 sh -c 'echo "
 config: {}
