@@ -13,7 +13,7 @@ There are several advantages to using the Ubuntu operating system. Some of these
 5. It is a constantly evolving and improving platform, with regular updates and new versions being released. 
 
 
-## What can I use eduxo Workstation for? 
+## What can/cannot I use eduxo Workstation for? 
 
 **This environment can be used to teach practical exercises in the areas of:**
 - Linux workstation administration,
