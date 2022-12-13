@@ -47,6 +47,8 @@ sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y firefox tigervnc-viewer asciinema xrdp
+# sudo apt-get remove -y celluloid shotwell plank redshift simple-scan transmission-
+# sudo apt-get autoremove -y
 
 
 # Install GIT
