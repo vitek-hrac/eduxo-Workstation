@@ -17,19 +17,16 @@ There are several advantages to using the Ubuntu operating system. Some of these
 
 ### 1. Download VM
 
+**Download link:** https://drive.google.com/drive/folders/1A_opDISoGS34Qv2K3pXFpJlER598i9vg?usp=sharing
 
-
-### 2. Running the ```init-VM.sh``` script
-
-## Basic information
+#### Basic information about VM
 
 **OS:** Ubuntu Server 22.04  
 **Login:** sysadmin:Netlab!23  
 **Hostname:** eduxo  
-**FQDN:** eduxo.lab 
+**FQDN:** eduxo.lab  
 
-
-## Requirements
+#### Requirements
 
 ```
 +---------------------- MINIMUM ----------------------+
@@ -47,8 +44,7 @@ There are several advantages to using the Ubuntu operating system. Some of these
 +-----------------------------------------------------+
 ```
 
-
-## Topology 
+#### Internal Networks Topology 
 ```
 +----------------+
 |    INTERNET    |
@@ -74,6 +70,13 @@ There are several advantages to using the Ubuntu operating system. Some of these
         |-----------+                            |
         +----------------------------------------+
 ```
+
+### 2. Running the ```init-VM.sh``` script
+
+1. Install the Linux Ubuntu operating system (we recommend Ubuntu Server 22.04),
+2. Download the init-VM.sh script,
+3. Run the script,
+4. Sit back comfortably with a cup of good coffee and wait for the installation of all tools to complete.
 
 
 ## Use 
