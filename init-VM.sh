@@ -80,7 +80,7 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y wireshark
 # Add your user to the wireshark group
-sudo adduser $USER wireshark > /dev/null
+sudo adduser $USER wireshark
 
 
 # Install PackerTracer (CiscoPacketTracer_820_Ubuntu_64bit.deb)
@@ -157,9 +157,9 @@ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev
      
 # Install Docker Engine
 sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # Add your user to the docker group
-sudo usermod -aG docker $USER > /dev/null
+sudo usermod -aG docker $USER
 
 # Install Portainer
 sudo docker pull portainer/portainer-ce:latest
@@ -245,7 +245,7 @@ lxc exec $NAME -- systemctl restart sshd
 # Upgrade container
 echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
 sleep 3
-sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get update
+sudo lxc exec $NAME -- apt-get update
 sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
