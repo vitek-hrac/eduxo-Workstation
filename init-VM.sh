@@ -69,7 +69,7 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 " >> $HOME/.profile'
 
 # Update GIT eduxo on login via rdp
-sh -c 'echo "
+sudo sh -c 'echo "
 
 # eduxo
 cd $HOME/eduxo/ && git pull > /dev/null 2>&1
