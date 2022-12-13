@@ -47,9 +47,14 @@ sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y firefox tigervnc-viewer asciinema xrdp
-# sudo apt-get remove -y celluloid shotwell plank redshift simple-scan transmission-
-# sudo apt-get autoremove -y
-
+sudo apt-get remove -y byobu plank redshift \
+  simple-scan shotwell \
+  transmission-common transmission-gtk \
+  libreoffice-core libreoffice-base-core libreoffice-common \
+  libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
+  evolution \
+  celluloid rhythmbox webcamoid
+sudo apt-get autoremove -y
 
 # Install GIT
 sudo apt-get install -y git
