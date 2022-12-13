@@ -100,7 +100,7 @@ There are several advantages to using the Ubuntu operating system. Some of these
 ### 2. Running the ```init-VM.sh``` script
 
 1. Install the Linux Ubuntu operating system (we recommend Ubuntu Server 22.04),
-2. Download the init-VM.sh script,
+2. Download the ```init-VM.sh``` script,
 3. Run the script,
 4. Sit back comfortably with a cup of good coffee and wait for the installation of all tools to complete.
 
