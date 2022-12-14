@@ -243,11 +243,11 @@ lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes
 lxc exec $NAME -- systemctl restart sshd
 
 # Upgrade container
-echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
-sleep 3
-sudo lxc exec $NAME -- apt-get update
-sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
-sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
+#echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
+#sleep 3
+#sudo lxc exec $NAME -- apt-get update
+#sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+#sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
 # Add static IP adress
 sudo lxc stop $NAME
