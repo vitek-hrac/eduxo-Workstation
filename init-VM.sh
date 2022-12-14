@@ -48,13 +48,14 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y firefox tigervnc-viewer asciinema xrdp
 sudo apt-get remove -y byobu plank redshift \
-  simple-scan shotwell \
+  simple-scan shotwell cheese \
   transmission-common transmission-gtk \
   libreoffice-core libreoffice-base-core libreoffice-common \
   libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
-  evolution \
+  evolution remmina \
   celluloid rhythmbox webcamoid \
-  gnome-sudoku 
+  gnome-sudoku gnome-mahjongg gnome-mines aisleriot \
+  usb-creator-common usb-creator-gtk
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
 # Install GIT
