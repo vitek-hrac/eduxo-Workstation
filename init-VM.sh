@@ -53,7 +53,8 @@ sudo apt-get remove -y byobu plank redshift \
   libreoffice-core libreoffice-base-core libreoffice-common \
   libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
   evolution \
-  celluloid rhythmbox webcamoid
+  celluloid rhythmbox webcamoid \
+  gnome-sudoku 
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
 # Install GIT
@@ -152,8 +153,8 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
     
 # Set up the stable repository
 sudo sh -c 'echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
      
 # Install Docker Engine
 sudo apt-get update
@@ -164,19 +165,19 @@ sudo usermod -aG docker $USER
 # Install Portainer
 sudo docker pull portainer/portainer-ce:latest
 sudo docker run -d \
---name portainer \
---restart always \
---publish 9443:9443 \
---volume /var/run/docker.sock:/var/run/docker.sock \
---volume portainer_data:/data portainer/portainer-ce:latest
+  --name portainer \
+  --restart always \
+  --publish 9443:9443 \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  --volume portainer_data:/data portainer/portainer-ce:latest
 
 # Install Watchtower
 sudo docker pull containrrr/watchtower
 sudo docker run -d \
---name watchtower \
---restart always \
---volume /var/run/docker.sock:/var/run/docker.sock \
-containrrr/watchtower
+  --name watchtower \
+  --restart always \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower
 
 echo -e '\e[0;92m\nInstallation Docker is completed.\e[0m'
 sleep 3
@@ -242,13 +243,6 @@ lxc exec $NAME -- sh -c 'echo "sysadmin:Netlab!23" | chpasswd'
 lxc exec $NAME -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 lxc exec $NAME -- systemctl restart sshd
 
-# Upgrade container
-#echo -e '\e[0;92m\nUpdating container '$NAME' ...\e[0m'
-#sleep 3
-#sudo lxc exec $NAME -- apt-get update
-#sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
-#sudo lxc exec $NAME -- DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
-
 # Add static IP adress
 sudo lxc stop $NAME
 sudo lxc network attach lxdbr0 $NAME eth0 eth0
@@ -265,7 +259,6 @@ echo -e '\e[0;92m\nConteiner '$NAME' is ready.\nInstallation LXD is completed.\e
 echo -e '\e[0;92m\nCleaning ...\e[0m'
 sleep 3
 sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
-history -c
 unset DEBIAN_FRONTEND
 
 echo -e '\n\e[1;92m\nInstallation is completed, restarting PC!\e[0m'
