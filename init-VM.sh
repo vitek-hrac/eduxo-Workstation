@@ -74,7 +74,7 @@ cd $HOME/eduxo/ && git pull > /dev/null 2>&1
 sudo sh -c 'echo "
 
 # eduxo
-cd $HOME/eduxo/ && git pull > /dev/null 2>&1
+cd /home/sysadmin/eduxo/ && git pull > /dev/null 2>&1
 " >> /etc/xrdp/startwm.sh'
 
 
