@@ -1,58 +1,68 @@
-# About eduxo Workstation
+# eduxo Workstation (cz)
 
-## Why do we use the Ubuntu Server distribution?
+**Přenositelné virtuální prostředí, ve kterém je možné vytvářet, spouštět a sdílet různé úlohy a cvičení.**
 
-There are several reasons why Ubuntu Server is a good choice. One reason is that it is a stable and reliable platform.
+<figure><img src=".gitbook/assets/eduxo_concept_v1.png" alt=""><figcaption></figcaption></figure>
 
-There are several advantages to using the Ubuntu operating system. Some of these include:
+## Proč používáme distribuci Ubuntu Server? <a href="#h.ju70cljn0pw_l" id="h.ju70cljn0pw_l"></a>
 
-1. It offers a stable and reliable platform.
-2. It has a large and active community of users and developers, who contribute to the development and improvement of the operating system.
-3. It is versatile and can be used on a wide range of hardware platforms, making it a good choice for users with diverse computing needs.
-4. It offers a wide range of tools and features that make it easy to set up and manage a server, including support for various server applications and services.
-5. It is a constantly evolving and improving platform, with regular updates and new versions being released. 
+Existuje několik důvodů, proč je Ubuntu Server dobrou volbou. Jedním z nich je, že se jedná o stabilní a spolehlivou platformu.
 
+Použití operačního systému Ubuntu má několik výhod. Mezi ně patří:
 
-## What can/cannot I use eduxo Workstation for? 
+1. Nabízí stabilní a spolehlivou platformu.
+2. Má velkou a aktivní komunitu uživatelů a vývojářů, kteří přispívají k vývoji a zdokonalování operačního systému.
+3. Je všestranný a lze jej používat na široké škále hardwarových platforem, takže je dobrou volbou pro uživatele s různými počítačovými potřebami.
+4. Nabízí širokou škálu nástrojů a funkcí, které usnadňují nastavení a správu serveru, včetně podpory různých serverových aplikací a služeb.
+5. Jedná se o neustále se vyvíjející a zdokonalující se platformu, pro kterou jsou pravidelně vydávány aktualizace a nové verze.
 
-**This environment can be used to teach practical exercises in the areas of:**
-- Linux workstation administration,
-- Linux server administration,
-- Linux security,
-- Linux network service management,
-- introduction to computer networks,
-- switching and routing,
-- security in computer networks,
-- computer network administration and monitoring,
-- computer network diagnostics,
-- computer network design.
-- cryptography,
-- security of networks and services,
-- computer network administration and supervision,
-- detection and prevention of network attacks,
-- security testing.
+## Kompatibilita <a href="#h.58z8kqpqdktj_l" id="h.58z8kqpqdktj_l"></a>
 
-**This environment CANNOT be used to teach practical exercises in the areas of:**
-- Windows workstation administration
-- Windows server administration
-- Windows security
-- Windows network services management
+* toto prostředí není závislé na žádné specifické platformě, celou VM lze spustit pod libovolným OS v programu VirtualBox,
+* cvičení a úlohy jsou kompatibilní s VM eduxo Workstation,
+* cvičení a úlohy kompatibilní s prostředím Cylab jsou příslušně označeny (pozor, některé typy laboratorních cvičení mohou být na prostředí Cylab přímo závislé).
 
+## K čemu mohu/nemohu používat eduxo Workstation?&#x20;
 
-## How to get eduxo Workstation
+#### Toto prostředí lze použít k výuce praktických cvičení v oblastech:
 
-### 1. Download VM
+* administrace pracovní stanice Linux,
+* administrace serveru Linux,
+* zabezpečení systémů Linux,
+* správa síťových služeb Linux,
+* úvod do počítačových sítí,
+* switching (přepínání) a routing (směrování),
+* bezpečnost v počítačových sítí,
+* správa a dohled nad počítačovou sítí,
+* diagnostika počítačové sítě,
+* návrh počítačové sítě,
+* kryptografie,
+* bezpečnost sítí a služeb,
+* správa a dohled nad počítačovou sítí,
+* detekce a prevence síťových útoků,
+* testování bezpečnosti.
 
-**Download link:** https://drive.google.com/drive/folders/1A_opDISoGS34Qv2K3pXFpJlER598i9vg?usp=sharing
+#### **Toto prostředí NElze využít k výuce praktických cvičení z oblastí:** <a href="#h.ph2r71cwamhc_l" id="h.ph2r71cwamhc_l"></a>
 
-#### Basic information about VM
+* administrace pracovní stanice Windows,
+* administrace serveru Windows,
+* zabezpečení systémů Windows,
+* správa síťových služeb Windows.
 
-**OS:** Ubuntu Server 22.04  
-**Login:** sysadmin:Netlab!23  
-**Hostname:** eduxo  
-**FQDN:** eduxo.lab  
+## Jak získat eduxo Workstation?
 
-#### Requirements
+### 1. Stáhnout VM
+
+**Download link:** https://drive.google.com/drive/folders/1A\_opDISoGS34Qv2K3pXFpJlER598i9vg?usp=sharing
+
+#### Základní informace o VM
+
+**OS:** Ubuntu Server 22.04\
+**Login:** sysadmin:Netlab!23\
+**Hostname:** eduxo\
+**FQDN:** eduxo.lab
+
+#### Požadavky
 
 ```
 +---------------------- MINIMUM ----------------------+
@@ -70,7 +80,8 @@ There are several advantages to using the Ubuntu operating system. Some of these
 +-----------------------------------------------------+
 ```
 
-#### Internal Networks Topology 
+#### Topologie vnitřních sítí
+
 ```
 +----------------+
 |    INTERNET    |
@@ -97,11 +108,9 @@ There are several advantages to using the Ubuntu operating system. Some of these
         +----------------------------------------+
 ```
 
-### 2. Running the ```init-VM.sh``` script
+### 2. Spuštěním skritpu `init-VM.sh`&#x20;
 
-1. Install the Linux Ubuntu operating system (we recommend Ubuntu Server 22.04),
-2. Download the ```init-VM.sh``` script,
-3. Run the script,
-4. Sit back comfortably with a cup of good coffee and wait for the installation of all tools to complete.
-
-
+1. Nainstalujte operační systém Linux Ubuntu (doporučujeme Ubuntu Server 22.04),&#x20;
+2. Stáhněte si skript `init-VM.sh`,&#x20;
+3. Spusťte skript,&#x20;
+4. Pohodlně se usaďte s šálkem dobré kávy a počkejte, až se dokončí instalace všech nástrojů.
