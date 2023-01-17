@@ -108,7 +108,7 @@ Použití operačního systému Ubuntu má několik výhod. Mezi ně patří:
         +----------------------------------------+
 ```
 
-### 2. Spuštěním skritpu `init-VM.sh`&#x20;
+### 2. Spuštění skritpu `init-VM.sh`&#x20;
 
 1. Nainstalujte operační systém Linux Ubuntu (doporučujeme Ubuntu Server 22.04),&#x20;
 2. Stáhněte si skript [`init-VM.sh`](init-VM.sh),&#x20;
