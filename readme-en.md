@@ -18,8 +18,8 @@ There are several advantages to using the Ubuntu operating system. Some of these
 
 ## Compatibility
 
-* This environment is not dependent on any specific platform, the entire VM can be run under any OS in VirtualBox,&#x20;
-* exercises and tasks are compatible with the eduxo Workstation VM,&#x20;
+* This environment is not dependent on any specific platform, the entire VM can be run under any OS in VirtualBox,
+* exercises and tasks are compatible with the eduxo Workstation VM,
 * exercises and tasks compatible with the Cylab environment are marked accordingly (note that some types of lab exercises may be directly dependent on the Cylab environment).
 
 ## What can/cannot I use eduxo Workstation for?
@@ -111,6 +111,6 @@ There are several advantages to using the Ubuntu operating system. Some of these
 ### 2. Running the `init-VM.sh` script
 
 1. Install the Linux Ubuntu operating system (we recommend Ubuntu Server 22.04),
-2. Download the `init-VM.sh` script,
+2. Download the [`init-VM.sh`](init-VM.sh) script,
 3. Run the script,
 4. Sit back comfortably with a cup of good coffee and wait for the installation of all tools to complete.
