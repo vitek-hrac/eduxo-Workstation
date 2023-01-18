@@ -22,7 +22,7 @@ Použití operačního systému Ubuntu má několik výhod. Mezi ně patří:
 * cvičení a úlohy jsou kompatibilní s VM eduxo Workstation,
 * cvičení a úlohy kompatibilní s prostředím Cylab jsou příslušně označeny (pozor, některé typy laboratorních cvičení mohou být na prostředí Cylab přímo závislé).
 
-## K čemu mohu/nemohu používat eduxo Workstation?&#x20;
+## K čemu mohu/nemohu používat eduxo Workstation?
 
 #### Toto prostředí lze použít k výuce praktických cvičení v oblastech:
 
@@ -53,7 +53,7 @@ Použití operačního systému Ubuntu má několik výhod. Mezi ně patří:
 
 ### 1. Stáhnout VM
 
-**Download link:** https://drive.google.com/drive/folders/1A\_opDISoGS34Qv2K3pXFpJlER598i9vg?usp=sharing
+**Download link:** [https://drive.google.com/drive/folders/1A\_opDISoGS34Qv2K3pXFpJlER598i9vg?usp=sharing](https://drive.google.com/drive/folders/1A\_opDISoGS34Qv2K3pXFpJlER598i9vg?usp=share\_link)
 
 #### Základní informace o VM
 
@@ -108,9 +108,9 @@ Použití operačního systému Ubuntu má několik výhod. Mezi ně patří:
         +----------------------------------------+
 ```
 
-### 2. Spuštění skritpu `init-VM.sh`&#x20;
+### 2. Spuštění skritpu `init-VM.sh`
 
-1. Nainstalujte operační systém Linux Ubuntu (doporučujeme Ubuntu Server 22.04),&#x20;
-2. Stáhněte si skript [`init-VM.sh`](init-VM.sh),&#x20;
-3. Spusťte skript,&#x20;
+1. Nainstalujte operační systém Linux Ubuntu (doporučujeme Ubuntu Server 22.04),
+2. Stáhněte si skript [`init-VM.sh`](init-VM.sh),
+3. Spusťte skript,
 4. Pohodlně se usaďte s šálkem dobré kávy a počkejte, až se dokončí instalace všech nástrojů.
