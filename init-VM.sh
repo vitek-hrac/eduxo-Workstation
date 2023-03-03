@@ -1,10 +1,11 @@
 #!/bin/bash
 # This script prepare VM eduxo Workstation on Ubuntu Server 22.04
-# Tested on Ubuntu Server 22.04 Mate
+# Tested on Ubuntu Server 22.04
 
 
 # Must be install manual
 # ======================
+# Install ubuntu-desktop-minimal
 # Install VBox Additions
 
 
@@ -47,16 +48,19 @@ sleep 3
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y firefox tigervnc-viewer asciinema xrdp
-sudo apt-get remove -y byobu plank redshift \
-  simple-scan shotwell cheese \
-  transmission-common transmission-gtk \
-  libreoffice-core libreoffice-base-core libreoffice-common \
-  libreoffice-style-colibre libreoffice-style-elementary libreoffice-style-yaru \
-  evolution remmina \
-  celluloid rhythmbox webcamoid \
-  gnome-sudoku gnome-mahjongg gnome-mines aisleriot \
-  usb-creator-common usb-creator-gtk
-sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
+
+
+# Set NetworkManager
+sudo sh -c 'echo "
+# This is the network config written by 'subiquity'
+network:
+  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: true
+  version: 2
+" > /etc/netplan/00-installer-config.yaml'
+
 
 # Install GIT
 sudo apt-get install -y git
@@ -272,6 +276,5 @@ sudo reboot
 # Set Background
 # Set Homepage (www.eduxo.cz)
 # Set GNS3
-# Menu Education (mozo)
 
 
